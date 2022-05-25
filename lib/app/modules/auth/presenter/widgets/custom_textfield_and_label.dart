@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 
 class CustomTextFieldAndLabel extends StatefulWidget {
   final String label;
@@ -56,10 +57,15 @@ class _CustomTextFieldAndLabelState extends State<CustomTextFieldAndLabel> {
             ),
             suffixIcon: widget.obscureTextProperty
                 ? GestureDetector(
-                    onTap: () {
-                      setState(() => obscureText = !obscureText);
-                    },
-                    child: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
+                    onTap: () => setState(() => obscureText = !obscureText),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Icon(
+                        obscureText ? IconlyLight.show : IconlyLight.hide,
+                        color: Theme.of(context).dialogBackgroundColor,
+                        size: 28,
+                      ),
+                    ),
                   )
                 : null,
             border: const OutlineInputBorder(

@@ -1,5 +1,5 @@
 import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_elevated_button.dart';
-import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_rounded_container.dart';
+import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_container.dart';
 import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_text_button.dart';
 import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_textfield_and_label.dart';
 import 'package:flutter/material.dart';
@@ -26,41 +26,38 @@ class _SignUpPageState extends State<SignUpPage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            SizedBox(
-              height: size.height * 0.27,
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: size.height * 0.04),
-                    Text(
-                      '👋 Hello, \nAre you new here?',
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                    SizedBox(height: size.height * 0.03),
-                    Row(
-                      children: [
-                        Text(
-                          'if you have an account /',
-                          style: TextStyle(color: Theme.of(context).dialogBackgroundColor),
-                        ),
-                        CustomTextButton(
-                          labelText: 'Login',
-                          onPressed: () => Modular.to.navigate('./login'),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+            Padding(
+              padding: const EdgeInsets.only(top: 32, left: 24, right: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: size.height * 0.04),
+                  Text(
+                    '👋 Hello, \nAre you new here?',
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  SizedBox(height: size.height * 0.03),
+                  Row(
+                    children: [
+                      Text(
+                        'if you have an account /',
+                        style: TextStyle(color: Theme.of(context).dialogBackgroundColor),
+                      ),
+                      CustomTextButton(
+                        labelText: 'Login',
+                        onPressed: () => Modular.to.navigate('./login'),
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
-            CustomRoundedContainer(
-              child: Column(
+            CustomContainer(
+              child: Stack(
                 children: [
                   Form(
                     key: _formKey,
@@ -72,25 +69,24 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: _nameController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Preencha este campo';
+                              return 'Fill';
                             }
                             return null;
                           },
                         ),
-                        SizedBox(height: size.height * 0.025),
+                        SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: 'E-mail',
                           iconData: IconlyLight.message,
-                          keyboardType: TextInputType.emailAddress,
                           controller: _emailController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Preencha este campo';
+                              return 'Fill';
                             }
                             return null;
                           },
                         ),
-                        SizedBox(height: size.height * 0.025),
+                        SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: 'Password',
                           iconData: IconlyLight.lock,
@@ -98,12 +94,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: _passwordController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Preencha este campo';
+                              return 'Fill';
                             }
                             return null;
                           },
                         ),
-                        SizedBox(height: size.height * 0.025),
+                        SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: 'Confirm Password',
                           iconData: IconlyLight.lock,
@@ -111,7 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: _confirmPasswordController,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Preencha este campo';
+                              return 'Fill';
                             }
                             return null;
                           },
@@ -119,20 +115,20 @@ class _SignUpPageState extends State<SignUpPage> {
                       ],
                     ),
                   ),
-                  const Spacer(),
-                  CustomElevatedButton(
-                    textButton: 'Sign Up',
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        print('Validado!');
-                      } else {
-                        print("Não validado");
-                      }
-                    },
+                  Padding(
+                    padding: EdgeInsets.only(top: size.height * 0.6),
+                    child: CustomElevatedButton(
+                      textButton: 'Sign Up',
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          print('Validado');
+                        }
+                      },
+                    ),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
