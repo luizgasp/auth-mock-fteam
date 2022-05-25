@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -32,19 +32,19 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     SizedBox(height: size.height * 0.08),
                     Text(
-                      '👋 Hello, \nAre you new here?',
+                      "🎉 Hey, \nIt's nice to see you again!",
                       style: Theme.of(context).textTheme.headline1,
                     ),
                     SizedBox(height: size.height * 0.03),
                     Row(
                       children: [
                         Text(
-                          'if you have an account /',
+                          "if you don't have an account /",
                           style: TextStyle(color: Theme.of(context).dialogBackgroundColor),
                         ),
                         CustomTextButton(
-                          labelText: 'Login',
-                          onPressed: () => Modular.to.navigate('./login'),
+                          labelText: 'Sign up',
+                          onPressed: () => Modular.to.navigate('./sign'),
                         )
                       ],
                     ),
@@ -55,10 +55,6 @@ class _SignUpPageState extends State<SignUpPage> {
             CustomRoundedContainer(
               child: Column(
                 children: [
-                  const CustomTextFieldAndLabel(
-                    label: 'Full Name',
-                    iconData: IconlyLight.profile,
-                  ),
                   SizedBox(height: size.height * 0.025),
                   const CustomTextFieldAndLabel(
                     label: 'E-mail',
@@ -71,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const Spacer(),
                   const CustomElevatedButton(
-                    textButton: 'Sign Up',
+                    textButton: 'Login',
                   ),
                 ],
               ),

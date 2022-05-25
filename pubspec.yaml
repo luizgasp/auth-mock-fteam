@@ -14,6 +14,9 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   flutter_modular: ^5.0.2
+  firebase_core: ^1.17.0
+  firebase_remote_config: ^2.0.0
+  firebase_auth: ^3.3.10
   iconly: ^1.0.1
 
 dev_dependencies:

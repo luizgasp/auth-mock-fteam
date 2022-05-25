@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "830208282619",
+    "project_id": "auth-fteam",
+    "storage_bucket": "auth-fteam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830208282619:android:d11b0b36b5933a808cc55e",
+        "android_client_info": {
+          "package_name": "com.example.auth_mock_3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830208282619-qndq9logb0ss95gjse7gboq1pornv1me.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoopcLWO6q3CSve5WHY7L6oaBaMafdicY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830208282619-qndq9logb0ss95gjse7gboq1pornv1me.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
