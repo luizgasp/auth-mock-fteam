@@ -7,6 +7,7 @@ class MainTheme {
       backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
       primaryColorDark: const Color.fromRGBO(62, 62, 62, 1),
       dialogBackgroundColor: const Color.fromRGBO(194, 194, 194, 1),
+      colorScheme: const ColorScheme.light(),
       fontFamily: 'Inter',
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: OutlineInputBorder(

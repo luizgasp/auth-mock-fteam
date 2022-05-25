@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFieldAndLabel extends StatelessWidget {
+class CustomTextFieldAndLabel extends StatefulWidget {
   final String label;
   final IconData iconData;
+  final TextInputType? keyboardType;
+  final bool obscureTextProperty;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   const CustomTextFieldAndLabel({
     Key? key,
     required this.label,
     required this.iconData,
+    this.keyboardType,
+    this.obscureTextProperty = false,
+    required this.controller,
+    required this.validator,
   }) : super(key: key);
+
+  @override
+  State<CustomTextFieldAndLabel> createState() => _CustomTextFieldAndLabelState();
+}
+
+class _CustomTextFieldAndLabelState extends State<CustomTextFieldAndLabel> {
+  late bool obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    obscureText = widget.obscureTextProperty;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,23 +38,36 @@ class CustomTextFieldAndLabel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label),
-        SizedBox(height: size.height * 0.03),
+        Text(widget.label),
+        SizedBox(height: size.height * 0.015),
         TextFormField(
+          keyboardType: widget.keyboardType,
+          controller: widget.controller,
+          obscureText: obscureText,
           style: Theme.of(context).textTheme.headline5,
           decoration: InputDecoration(
             prefixIcon: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Icon(
-                iconData,
+                widget.iconData,
                 color: Theme.of(context).primaryColor,
                 size: 28,
               ),
             ),
+            suffixIcon: widget.obscureTextProperty
+                ? GestureDetector(
+                    onTap: () {
+                      setState(() => obscureText = !obscureText);
+                    },
+                    child: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
+                  )
+                : null,
             border: const OutlineInputBorder(
               borderSide: BorderSide(width: 2),
             ),
+            contentPadding: const EdgeInsets.symmetric(vertical: 17),
           ),
+          validator: widget.validator,
         ),
       ],
     );

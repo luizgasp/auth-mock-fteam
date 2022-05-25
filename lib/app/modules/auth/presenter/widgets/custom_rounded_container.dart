@@ -11,7 +11,7 @@ class CustomRoundedContainer extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: size.height * 0.69,
+      height: size.height * 0.73,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),

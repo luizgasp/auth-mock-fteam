@@ -14,6 +14,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -56,18 +59,27 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   SizedBox(height: size.height * 0.025),
-                  const CustomTextFieldAndLabel(
+                  CustomTextFieldAndLabel(
                     label: 'E-mail',
                     iconData: IconlyLight.message,
+                    controller: _emailController,
+                    validator: (value) {
+                      return null;
+                    },
                   ),
                   SizedBox(height: size.height * 0.025),
-                  const CustomTextFieldAndLabel(
+                  CustomTextFieldAndLabel(
                     label: 'Password',
                     iconData: IconlyLight.lock,
+                    controller: _passwordController,
+                    validator: (value) {
+                      return null;
+                    },
                   ),
                   const Spacer(),
-                  const CustomElevatedButton(
+                  CustomElevatedButton(
                     textButton: 'Login',
+                    onPressed: () {},
                   ),
                 ],
               ),

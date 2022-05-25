@@ -14,6 +14,13 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -24,13 +31,13 @@ class _SignUpPageState extends State<SignUpPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: size.height * 0.31,
+              height: size.height * 0.27,
               child: Padding(
                 padding: const EdgeInsets.all(32),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: size.height * 0.08),
+                    SizedBox(height: size.height * 0.04),
                     Text(
                       '👋 Hello, \nAre you new here?',
                       style: Theme.of(context).textTheme.headline1,
@@ -55,23 +62,73 @@ class _SignUpPageState extends State<SignUpPage> {
             CustomRoundedContainer(
               child: Column(
                 children: [
-                  const CustomTextFieldAndLabel(
-                    label: 'Full Name',
-                    iconData: IconlyLight.profile,
-                  ),
-                  SizedBox(height: size.height * 0.025),
-                  const CustomTextFieldAndLabel(
-                    label: 'E-mail',
-                    iconData: IconlyLight.message,
-                  ),
-                  SizedBox(height: size.height * 0.025),
-                  const CustomTextFieldAndLabel(
-                    label: 'Password',
-                    iconData: IconlyLight.lock,
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        CustomTextFieldAndLabel(
+                          label: 'Full Name',
+                          iconData: IconlyLight.profile,
+                          controller: _nameController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Preencha este campo';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: size.height * 0.025),
+                        CustomTextFieldAndLabel(
+                          label: 'E-mail',
+                          iconData: IconlyLight.message,
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Preencha este campo';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: size.height * 0.025),
+                        CustomTextFieldAndLabel(
+                          label: 'Password',
+                          iconData: IconlyLight.lock,
+                          obscureTextProperty: true,
+                          controller: _passwordController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Preencha este campo';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: size.height * 0.025),
+                        CustomTextFieldAndLabel(
+                          label: 'Confirm Password',
+                          iconData: IconlyLight.lock,
+                          obscureTextProperty: true,
+                          controller: _confirmPasswordController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Preencha este campo';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   const Spacer(),
-                  const CustomElevatedButton(
+                  CustomElevatedButton(
                     textButton: 'Sign Up',
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        print('Validado!');
+                      } else {
+                        print("Não validado");
+                      }
+                    },
                   ),
                 ],
               ),

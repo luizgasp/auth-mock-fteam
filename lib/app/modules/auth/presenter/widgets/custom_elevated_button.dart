@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final String textButton;
+  final void Function()? onPressed;
 
   const CustomElevatedButton({
     Key? key,
     required this.textButton,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -19,6 +21,7 @@ class CustomElevatedButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
+        onPressed: onPressed,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Text(
@@ -26,7 +29,6 @@ class CustomElevatedButton extends StatelessWidget {
             style: const TextStyle(fontSize: 18),
           ),
         ),
-        onPressed: () {},
       ),
     );
   }
