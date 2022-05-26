@@ -1,13 +1,19 @@
+import 'package:auth_mock_3/app/modules/auth/external/datasources/firebase_auth_datasource.dart';
 import 'package:auth_mock_3/app/modules/auth/infra/repositories/auth_repository.dart';
-import 'package:auth_mock_3/app/modules/auth/presenter/views/login_page.dart';
-import 'package:auth_mock_3/app/modules/auth/presenter/views/signup_page.dart';
+import 'package:auth_mock_3/app/modules/auth/presenter/controllers/auth_controller.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'presenter/ui/views/login_page.dart';
+import 'presenter/ui/views/signup_page.dart';
 
 class AuthModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.lazySingleton((i) => AuthRepository(auth: FirebaseAuth.instance)),
+        Bind.factory((i) => FirebaseAuthDatasource(FirebaseAuth.instance)),
+        Bind.factory((i) => AuthRepository(i())),
+        Bind.factory((i) => AuthController(i())),
       ];
 
   @override

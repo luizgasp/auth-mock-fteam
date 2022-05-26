@@ -1,10 +1,11 @@
-import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_elevated_button.dart';
-import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_container.dart';
-import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_text_button.dart';
-import 'package:auth_mock_3/app/modules/auth/presenter/widgets/custom_textfield_and_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
+
+import '../widgets/custom_container.dart';
+import '../widgets/custom_elevated_button.dart';
+import '../widgets/custom_text_button.dart';
+import '../widgets/custom_textfield_and_label.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);

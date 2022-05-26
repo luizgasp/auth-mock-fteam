@@ -1,19 +1,22 @@
+import 'package:auth_mock_3/app/modules/auth/domain/helpers/params/login_params.dart';
+import 'package:auth_mock_3/app/modules/auth/domain/helpers/params/signup_params.dart';
+import 'package:auth_mock_3/app/modules/auth/infra/datasources/i_auth_datasource.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:auth_mock_3/app/modules/auth/domain/repositories/i_auth_repository.dart';
 
 class AuthRepository implements IAuthRepository {
-  final FirebaseAuth auth;
+  final IAuthDatasource authDatasource;
 
-  AuthRepository({required this.auth});
+  AuthRepository(this.authDatasource);
 
   @override
-  Future<void> signUp({required String email, required String password}) async {
-    await auth.createUserWithEmailAndPassword(email: email, password: password);
+  Future<UserCredential> signUp(SignUpParams params) async {
+    return await authDatasource.signUp(params);
   }
 
   @override
-  Future<void> login({required String email, required String password}) async {
-    await auth.signInWithEmailAndPassword(email: email, password: password);
+  Future<UserCredential> login(LoginParams params) async {
+    return await authDatasource.login(params);
   }
 }
