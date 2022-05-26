@@ -1,3 +1,4 @@
+import 'package:auth_mock_3/app/modules/auth/presenter/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
@@ -15,10 +16,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
+  final authController = Modular.get<AuthController>();
 
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                         CustomTextFieldAndLabel(
                           label: 'E-mail',
                           iconData: IconlyLight.message,
-                          controller: _emailController,
+                          controller: authController.emailController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Fill';
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                           label: 'Password',
                           iconData: IconlyLight.lock,
                           obscureTextProperty: true,
-                          controller: _passwordController,
+                          controller: authController.passwordController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Fill';
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     textButton: 'Sign Up',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        print('Validado');
+                        authController.login();
                       }
                     },
                   ),

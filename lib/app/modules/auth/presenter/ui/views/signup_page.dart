@@ -1,3 +1,4 @@
+import 'package:auth_mock_3/app/modules/auth/presenter/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
@@ -15,12 +16,8 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final authController = Modular.get<AuthController>();
   final _formKey = GlobalKey<FormState>();
-
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         CustomTextFieldAndLabel(
                           label: 'Full Name',
                           iconData: IconlyLight.profile,
-                          controller: _nameController,
+                          controller: authController.nameController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Fill';
@@ -79,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         CustomTextFieldAndLabel(
                           label: 'E-mail',
                           iconData: IconlyLight.message,
-                          controller: _emailController,
+                          controller: authController.emailController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Fill';
@@ -92,7 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           label: 'Password',
                           iconData: IconlyLight.lock,
                           obscureTextProperty: true,
-                          controller: _passwordController,
+                          controller: authController.passwordController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Fill';
@@ -105,7 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           label: 'Confirm Password',
                           iconData: IconlyLight.lock,
                           obscureTextProperty: true,
-                          controller: _confirmPasswordController,
+                          controller: authController.confirmPasswordController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Fill';
@@ -120,9 +117,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: EdgeInsets.only(top: size.height * 0.6),
                     child: CustomElevatedButton(
                       textButton: 'Sign Up',
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          print('Validado');
+                          await authController.signUp();
                         }
                       },
                     ),
