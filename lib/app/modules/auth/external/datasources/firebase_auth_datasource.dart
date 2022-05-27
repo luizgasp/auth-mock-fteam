@@ -48,4 +48,6 @@ class FirebaseAuthDatasource implements IAuthDatasource {
       }
     }
   }
+
+  User? getCurrentUser() => _auth.currentUser;
 }

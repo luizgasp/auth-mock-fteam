@@ -6,4 +6,5 @@ import '../../domain/helpers/params/signup_params.dart';
 abstract class IAuthDatasource {
   Future<UserCredential> signUp(SignUpWithEmailParams params);
   Future<UserCredential> login(LoginWithEmailParams params);
+  User? getCurrentUser();
 }
