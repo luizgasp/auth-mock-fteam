@@ -1,9 +1,10 @@
-import 'package:auth_mock_3/app/core/shared/failures/implementations/auth_exception.dart';
 import 'package:auth_mock_3/app/modules/auth/domain/helpers/params/signup_params.dart';
-import 'package:auth_mock_3/app/modules/auth/domain/helpers/params/login_params.dart';
 import 'package:auth_mock_3/app/modules/auth/infra/datasources/i_auth_datasource.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../../core/shared/exceptions/implementations/auth_exception.dart';
+import '../../domain/helpers/params/login_params.dart';
 
 class FirebaseAuthDatasource implements IAuthDatasource {
   final FirebaseAuth _auth;
@@ -11,7 +12,7 @@ class FirebaseAuthDatasource implements IAuthDatasource {
   FirebaseAuthDatasource(this._auth);
 
   @override
-  Future<UserCredential> signUp(SignUpParams params) async {
+  Future<UserCredential> signUp(SignUpWithEmailParams params) async {
     try {
       final userCredential = await _auth.createUserWithEmailAndPassword(email: params.email, password: params.password);
       return userCredential;
@@ -30,7 +31,7 @@ class FirebaseAuthDatasource implements IAuthDatasource {
   }
 
   @override
-  Future<UserCredential> login(LoginParams params) async {
+  Future<UserCredential> login(LoginWithEmailParams params) async {
     try {
       final userCrendential = await _auth.signInWithEmailAndPassword(email: params.email, password: params.password);
       return userCrendential;

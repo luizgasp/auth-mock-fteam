@@ -17,7 +17,6 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final authController = Modular.get<AuthController>();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Stack(
                 children: [
                   Form(
-                    key: _formKey,
+                    key: authController.formKey,
                     child: Column(
                       children: [
                         CustomTextFieldAndLabel(
@@ -118,7 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: CustomElevatedButton(
                       textButton: 'Sign Up',
                       onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
+                        if (authController.formKey.currentState!.validate()) {
                           await authController.signUp();
                         }
                       },

@@ -17,8 +17,8 @@ dependencies:
   firebase_core: ^1.17.0
   firebase_remote_config: ^2.0.0
   firebase_auth: ^3.3.10
-  iconly: ^1.0.1
   asuka: ^2.0.0+1
+  iconly: ^1.0.1
 
 dev_dependencies:
   flutter_test:

@@ -18,8 +18,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final authController = Modular.get<AuthController>();
 
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -63,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Form(
-                    key: _formKey,
+                    key: authController.formKey,
                     child: Column(
                       children: [
                         SizedBox(height: size.height * 0.015),
@@ -96,9 +94,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: size.height * 0.1),
                   CustomElevatedButton(
-                    textButton: 'Sign Up',
+                    textButton: 'Login',
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
+                      if (authController.formKey.currentState!.validate()) {
                         authController.login();
                       }
                     },

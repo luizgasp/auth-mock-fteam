@@ -1,8 +1,8 @@
-class SignUpParams {
+class SignUpWithEmailParams {
   final String email;
   final String password;
 
-  SignUpParams({
+  SignUpWithEmailParams({
     required this.email,
     required this.password,
   });
