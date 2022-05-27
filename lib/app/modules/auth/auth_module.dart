@@ -13,7 +13,7 @@ class AuthModule extends Module {
   List<Bind<Object>> get binds => [
         Bind.factory((i) => FirebaseAuthDatasource(FirebaseAuth.instance)),
         Bind.factory((i) => AuthRepository(i())),
-        Bind.factory((i) => AuthController(i())),
+        Bind.factory((i) => AuthController(i(), i())),
       ];
 
   @override
