@@ -7,10 +7,10 @@ import '../../../../core/shared/exceptions/implementations/auth_exception.dart';
 import '../../domain/helpers/params/login_params.dart';
 
 // TODO - Transform this datasource into a service
-class FirebaseAuthDatasource implements IAuthDatasource {
+class FirebaseAuthDatasourceImp implements IAuthDatasource {
   final FirebaseAuth _auth;
 
-  FirebaseAuthDatasource(this._auth);
+  FirebaseAuthDatasourceImp(this._auth);
 
   @override
   Future<void> signUp(SignUpWithEmailParams params) async {

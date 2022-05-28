@@ -1,4 +1,4 @@
-import 'package:auth_mock_3/app/modules/auth/external/datasources/firebase_auth_datasource.dart';
+import 'package:auth_mock_3/app/modules/auth/external/datasources/firebase_auth_datasource_imp.dart';
 import 'package:auth_mock_3/app/modules/auth/infra/repositories/auth_repository.dart';
 import 'package:auth_mock_3/app/modules/auth/presenter/controllers/auth_controller.dart';
 
@@ -11,7 +11,7 @@ import 'presenter/ui/views/signup_page.dart';
 class AuthModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.factory((i) => FirebaseAuthDatasource(FirebaseAuth.instance), export: true),
+        Bind.factory((i) => FirebaseAuthDatasourceImp(FirebaseAuth.instance), export: true),
         Bind.factory((i) => AuthRepository(i()), export: true),
         // factory não funcionando quando eu tentei usar o export?
         Bind.singleton((i) => AuthController(i(), i())),
