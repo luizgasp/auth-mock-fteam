@@ -6,7 +6,10 @@ import "package:asuka/asuka.dart" as asuka;
 class AsukaOverlayService implements IOverlayService {
   @override
   void showSnackBar(String message) {
-    //
-    asuka.showSnackBar(SnackBar(content: Text(message, textAlign: TextAlign.center)));
+    final snackBar = SnackBar(
+      content: Text(message),
+    );
+
+    asuka.showSnackBar(snackBar);
   }
 }

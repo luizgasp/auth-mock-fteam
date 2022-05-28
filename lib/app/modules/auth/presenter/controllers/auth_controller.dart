@@ -27,9 +27,15 @@ class AuthController {
       password: passwordController.text,
     );
 
-    final userCredential = await authRepository.signUp(params);
+    try {
+      await authRepository.signUp(params);
 
-    return userCredential.user!.uid.isNotEmpty ? Modular.to.navigate('/home/') : null;
+      final currentUser = authRepository.getCurrentUser();
+
+      return currentUser != null ? Modular.to.navigate('/home/') : null;
+    } on AuthException catch (error) {
+      overlayService.showSnackBar(error.message);
+    }
   }
 
   Future<void> login() async {
@@ -39,10 +45,13 @@ class AuthController {
     );
 
     try {
-      final userCredential = await authRepository.login(params);
-      return userCredential.user!.uid.isNotEmpty ? Modular.to.navigate('/home/') : null;
-    } on AuthException catch (e) {
-      overlayService.showSnackBar(e.message);
+      await authRepository.login(params);
+
+      final currentUser = authRepository.getCurrentUser();
+
+      return currentUser != null ? Modular.to.navigate('/home/') : null;
+    } on AuthException catch (error) {
+      overlayService.showSnackBar(error.message);
     }
   }
 }

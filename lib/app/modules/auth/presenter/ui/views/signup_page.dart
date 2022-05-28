@@ -64,9 +64,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           label: 'Full Name',
                           iconData: IconlyLight.profile,
                           controller: authController.nameController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Fill';
+                          validator: (name) {
+                            if (name == null || name.isEmpty) {
+                              return 'Please, fill this field';
                             }
                             return null;
                           },

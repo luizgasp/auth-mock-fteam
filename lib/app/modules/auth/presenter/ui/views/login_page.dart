@@ -8,6 +8,8 @@ import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_text_button.dart';
 import '../widgets/custom_textfield_and_label.dart';
 
+import "dart:developer" as dev;
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -54,8 +56,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             CustomContainer(
-              paddingTop: size.height * 0.4,
-              height: size.height * 0.6,
+              paddingTop: size.height * 0.45,
+              height: size.height * 0.55,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,15 +65,15 @@ class _LoginPageState extends State<LoginPage> {
                   Form(
                     key: authController.formKey,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: 'E-mail',
                           iconData: IconlyLight.message,
                           controller: authController.emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Fill';
+                          validator: (email) {
+                            if (email == null || email.isEmpty) {
+                              return 'Please, fill this field';
                             }
                             return null;
                           },
@@ -82,9 +84,9 @@ class _LoginPageState extends State<LoginPage> {
                           iconData: IconlyLight.lock,
                           obscureTextProperty: true,
                           controller: authController.passwordController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Fill';
+                          validator: (password) {
+                            if (password == null || password.isEmpty) {
+                              return 'Please, fill this field';
                             }
                             return null;
                           },
@@ -97,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     textButton: 'Login',
                     onPressed: () {
                       if (authController.formKey.currentState!.validate()) {
+                        dev.log(authController.emailController.text);
                         authController.login();
                       }
                     },

@@ -11,9 +11,9 @@ import 'presenter/ui/views/signup_page.dart';
 class AuthModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.factory((i) => FirebaseAuthDatasource(FirebaseAuth.instance)),
-        Bind.factory((i) => AuthRepository(i())),
-        Bind.factory((i) => AuthController(i(), i())),
+        Bind.factory((i) => FirebaseAuthDatasource(FirebaseAuth.instance), export: true),
+        Bind.factory((i) => AuthRepository(i()), export: true),
+        Bind.singleton((i) => AuthController(i(), i())),
       ];
 
   @override

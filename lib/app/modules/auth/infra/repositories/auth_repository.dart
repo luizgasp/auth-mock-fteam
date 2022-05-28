@@ -12,12 +12,18 @@ class AuthRepository implements IAuthRepository {
   AuthRepository(this.authDatasource);
 
   @override
-  Future<UserCredential> signUp(SignUpWithEmailParams params) async {
-    return await authDatasource.signUp(params);
+  Future<void> signUp(SignUpWithEmailParams params) async {
+    await authDatasource.signUp(params);
   }
 
   @override
-  Future<UserCredential> login(LoginWithEmailParams params) async {
-    return await authDatasource.login(params);
+  Future<void> login(LoginWithEmailParams params) async {
+    await authDatasource.login(params);
   }
+
+  @override
+  Future<void> logout() async => await authDatasource.logout();
+
+  @override
+  User? getCurrentUser() => authDatasource.getCurrentUser();
 }

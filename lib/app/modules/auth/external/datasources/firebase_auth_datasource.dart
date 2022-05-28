@@ -12,10 +12,9 @@ class FirebaseAuthDatasource implements IAuthDatasource {
   FirebaseAuthDatasource(this._auth);
 
   @override
-  Future<UserCredential> signUp(SignUpWithEmailParams params) async {
+  Future<void> signUp(SignUpWithEmailParams params) async {
     try {
-      final userCredential = await _auth.createUserWithEmailAndPassword(email: params.email, password: params.password);
-      return userCredential;
+      await _auth.createUserWithEmailAndPassword(email: params.email, password: params.password);
     } on FirebaseAuthException catch (e, stackTrace) {
       switch (e.code) {
         case 'invalid-email':
@@ -31,10 +30,9 @@ class FirebaseAuthDatasource implements IAuthDatasource {
   }
 
   @override
-  Future<UserCredential> login(LoginWithEmailParams params) async {
+  Future<void> login(LoginWithEmailParams params) async {
     try {
-      final userCrendential = await _auth.signInWithEmailAndPassword(email: params.email, password: params.password);
-      return userCrendential;
+      await _auth.signInWithEmailAndPassword(email: params.email, password: params.password);
     } on FirebaseAuthException catch (e, stackTrace) {
       switch (e.code) {
         case 'invalid-email':
@@ -49,5 +47,9 @@ class FirebaseAuthDatasource implements IAuthDatasource {
     }
   }
 
+  @override
+  Future<void> logout() async => await _auth.signOut();
+
+  @override
   User? getCurrentUser() => _auth.currentUser;
 }
