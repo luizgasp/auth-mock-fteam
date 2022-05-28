@@ -21,7 +21,7 @@ class AuthController {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  Future<void> signUp() async {
+  Future<void> handleSignUpWithEmail() async {
     final params = SignUpWithEmailParams(
       email: emailController.text,
       password: passwordController.text,
@@ -38,7 +38,7 @@ class AuthController {
     }
   }
 
-  Future<void> login() async {
+  Future<void> handleLoginWithEmail() async {
     final params = LoginWithEmailParams(
       email: emailController.text,
       password: passwordController.text,

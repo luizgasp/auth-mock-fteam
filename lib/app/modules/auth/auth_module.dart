@@ -13,6 +13,7 @@ class AuthModule extends Module {
   List<Bind<Object>> get binds => [
         Bind.factory((i) => FirebaseAuthDatasource(FirebaseAuth.instance), export: true),
         Bind.factory((i) => AuthRepository(i()), export: true),
+        // factory não funcionando quando eu tentei usar o export?
         Bind.singleton((i) => AuthController(i(), i())),
       ];
 

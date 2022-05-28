@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/shared/exceptions/implementations/auth_exception.dart';
 import '../../domain/helpers/params/login_params.dart';
 
+// TODO - Transform this datasource into a service
 class FirebaseAuthDatasource implements IAuthDatasource {
   final FirebaseAuth _auth;
 
@@ -18,13 +19,13 @@ class FirebaseAuthDatasource implements IAuthDatasource {
     } on FirebaseAuthException catch (e, stackTrace) {
       switch (e.code) {
         case 'invalid-email':
-          throw AuthException(message: 'E-mail inválido', stackTrace: stackTrace);
+          throw AuthException(message: 'Invalid e-mail', stackTrace: stackTrace);
         case 'email-already-in-use':
-          throw AuthException(message: 'E-mail já em uso', stackTrace: stackTrace);
+          throw AuthException(message: 'E-mail already in use', stackTrace: stackTrace);
         case 'weak-password':
-          throw AuthException(message: 'Senha fraca', stackTrace: stackTrace);
+          throw AuthException(message: 'Weak password, please try again', stackTrace: stackTrace);
         default:
-          throw AuthException(message: 'Erro no signUp', stackTrace: stackTrace);
+          throw AuthException(message: 'Sign Up error', stackTrace: stackTrace);
       }
     }
   }
@@ -36,13 +37,13 @@ class FirebaseAuthDatasource implements IAuthDatasource {
     } on FirebaseAuthException catch (e, stackTrace) {
       switch (e.code) {
         case 'invalid-email':
-          throw AuthException(message: 'E-mail inválido', stackTrace: stackTrace);
+          throw AuthException(message: 'Invalid e-mail', stackTrace: stackTrace);
         case 'user-not-found':
-          throw AuthException(message: 'Usuário não encontrado', stackTrace: stackTrace);
+          throw AuthException(message: 'User not found', stackTrace: stackTrace);
         case 'wrong-password':
-          throw AuthException(message: 'Senha incorreta', stackTrace: stackTrace);
+          throw AuthException(message: 'Weak password, please try again', stackTrace: stackTrace);
         default:
-          throw AuthException(message: 'Login Error', stackTrace: stackTrace);
+          throw AuthException(message: 'Login error', stackTrace: stackTrace);
       }
     }
   }

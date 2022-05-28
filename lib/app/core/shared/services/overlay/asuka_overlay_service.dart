@@ -3,7 +3,7 @@ import 'package:auth_mock_3/app/core/shared/services/overlay/i_overlay_service.d
 
 import "package:asuka/asuka.dart" as asuka;
 
-class AsukaOverlayService implements IOverlayService {
+class AsukaOverlayServiceImp implements IOverlayService {
   @override
   void showSnackBar(String message) {
     final snackBar = SnackBar(

@@ -76,9 +76,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           label: 'E-mail',
                           iconData: IconlyLight.message,
                           controller: authController.emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Fill';
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (email) {
+                            if (email == null || email.isEmpty) {
+                              return 'Please, fill this field';
+                            } else if (!email.contains('@') && !email.contains('.')) {
+                              return 'Please, enter a valid e-mail';
                             }
                             return null;
                           },
@@ -89,9 +92,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           iconData: IconlyLight.lock,
                           obscureTextProperty: true,
                           controller: authController.passwordController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Fill';
+                          validator: (password) {
+                            if (password == null || password.isEmpty) {
+                              return 'Please, fill this field';
+                            } else if (password.length < 6) {
+                              return 'Your password must contain at least 6 characters';
                             }
                             return null;
                           },
@@ -102,9 +107,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           iconData: IconlyLight.lock,
                           obscureTextProperty: true,
                           controller: authController.confirmPasswordController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Fill';
+                          validator: (confirmPassword) {
+                            if (confirmPassword == null || confirmPassword.isEmpty) {
+                              return 'Please, fill this field';
+                            } else if (authController.passwordController.text != confirmPassword) {
+                              return 'Please, your passwords need to match';
                             }
                             return null;
                           },
@@ -118,7 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       textButton: 'Sign Up',
                       onPressed: () async {
                         if (authController.formKey.currentState!.validate()) {
-                          await authController.signUp();
+                          await authController.handleSignUpWithEmail();
                         }
                       },
                     ),

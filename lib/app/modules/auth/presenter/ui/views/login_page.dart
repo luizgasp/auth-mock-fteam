@@ -8,8 +8,6 @@ import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_text_button.dart';
 import '../widgets/custom_textfield_and_label.dart';
 
-import "dart:developer" as dev;
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -99,8 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                     textButton: 'Login',
                     onPressed: () {
                       if (authController.formKey.currentState!.validate()) {
-                        dev.log(authController.emailController.text);
-                        authController.login();
+                        authController.handleLoginWithEmail();
                       }
                     },
                   ),
