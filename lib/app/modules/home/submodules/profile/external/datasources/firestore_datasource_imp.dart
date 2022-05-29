@@ -12,4 +12,9 @@ class FirestoreDatasourceImp implements IDatabaseDatasource {
   Future<void> updateUserInfoInDB(UpdateUserInfoParams params) async {
     await _databaseService.updateUserInfoInDB(params);
   }
+
+  @override
+  Future<Map<String, dynamic>?> getUserInfo() async {
+    return await _databaseService.getUserInfo();
+  }
 }

@@ -12,7 +12,7 @@ class HomeModule extends Module {
 
   @override
   List<Bind<Object>> get binds => [
-        Bind.factory((i) => ProfileController(i())),
+        Bind.factory((i) => ProfileController(i(), i())),
       ];
 
   @override
