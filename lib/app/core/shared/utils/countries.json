@@ -1,0 +1,20 @@
+{
+  "countries": [
+    {
+      "name": "Brazil",
+      "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BR.svg"
+    },
+    {
+      "name": "United States",
+      "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/US.svg"
+    },
+    {
+      "name": "Canada",
+      "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CA.svg"
+    },
+    {
+      "name": "United Kingdom",
+      "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GB.svg"
+    }
+  ]
+}

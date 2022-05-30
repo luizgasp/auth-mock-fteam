@@ -16,7 +16,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final authController = Modular.get<SignUpController>();
+  final signUpController = Modular.get<SignUpController>();
 
   @override
   Widget build(BuildContext context) {
@@ -57,13 +57,13 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Stack(
                 children: [
                   Form(
-                    key: authController.formKey,
+                    key: signUpController.formKey,
                     child: Column(
                       children: [
                         CustomTextFieldAndLabel(
                           label: 'Full Name',
                           iconData: IconlyLight.profile,
-                          controller: authController.nameController,
+                          controller: signUpController.nameController,
                           validator: (name) {
                             if (name == null || name.isEmpty) {
                               return 'Please, fill this field';
@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         CustomTextFieldAndLabel(
                           label: 'E-mail',
                           iconData: IconlyLight.message,
-                          controller: authController.emailController,
+                          controller: signUpController.emailController,
                           keyboardType: TextInputType.emailAddress,
                           validator: (email) {
                             if (email == null || email.isEmpty) {
@@ -90,8 +90,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         CustomTextFieldAndLabel(
                           label: 'Password',
                           iconData: IconlyLight.lock,
-                          obscureTextProperty: true,
-                          controller: authController.passwordController,
+                          passwordTile: true,
+                          controller: signUpController.passwordController,
                           validator: (password) {
                             if (password == null || password.isEmpty) {
                               return 'Please, fill this field';
@@ -105,12 +105,12 @@ class _SignUpPageState extends State<SignUpPage> {
                         CustomTextFieldAndLabel(
                           label: 'Confirm Password',
                           iconData: IconlyLight.lock,
-                          obscureTextProperty: true,
-                          controller: authController.confirmPasswordController,
+                          passwordTile: true,
+                          controller: signUpController.confirmPasswordController,
                           validator: (confirmPassword) {
                             if (confirmPassword == null || confirmPassword.isEmpty) {
                               return 'Please, fill this field';
-                            } else if (authController.passwordController.text != confirmPassword) {
+                            } else if (signUpController.passwordController.text != confirmPassword) {
                               return 'Please, your passwords need to match';
                             }
                             return null;
@@ -124,9 +124,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: CustomElevatedButton(
                       textButton: 'Sign Up',
                       onPressed: () async {
-                        if (authController.formKey.currentState!.validate()) {
-                          await authController.handleSignUpWithEmail();
-                        }
+                        // TODO - VOLTAR O VALIDAÇÂO DE CONTROLLER PELO IF
+                        // if (authController.formKey.currentState!.validate()) {
+                        //   Modular.to.navigate('/auth/sign/profile/');
+                        // }
+                        Modular.to.pushNamed("/auth/sign/profile");
                       },
                     ),
                   ),

@@ -9,8 +9,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 class LoginModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.factory((i) => FirebaseLoginDatasourceImp(FirebaseAuth.instance)),
-        Bind.factory((i) => LoginRepositoryImp(i())),
+        Bind.factory((i) => FirebaseLoginDatasourceImp(FirebaseAuth.instance), export: true),
+        Bind.factory((i) => LoginRepositoryImp(i()), export: true),
         Bind.factory((i) => LoginUsecase(i(), i())),
         Bind.singleton((i) => LoginController(i())),
       ];

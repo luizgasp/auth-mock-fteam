@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                         CustomTextFieldAndLabel(
                           label: 'Password',
                           iconData: IconlyLight.lock,
-                          obscureTextProperty: true,
+                          passwordTile: true,
                           controller: loginController.passwordController,
                           validator: (password) {
                             if (password == null || password.isEmpty) {

@@ -5,7 +5,7 @@ class CustomTextFieldAndLabel extends StatefulWidget {
   final String label;
   final IconData iconData;
   final TextInputType? keyboardType;
-  final bool obscureTextProperty;
+  final bool passwordTile;
   final TextEditingController controller;
   final String? Function(String?)? validator;
 
@@ -14,7 +14,7 @@ class CustomTextFieldAndLabel extends StatefulWidget {
     required this.label,
     required this.iconData,
     this.keyboardType,
-    this.obscureTextProperty = false,
+    this.passwordTile = false,
     required this.controller,
     required this.validator,
   }) : super(key: key);
@@ -29,7 +29,7 @@ class _CustomTextFieldAndLabelState extends State<CustomTextFieldAndLabel> {
   @override
   void initState() {
     super.initState();
-    obscureText = widget.obscureTextProperty;
+    obscureText = widget.passwordTile;
   }
 
   @override
@@ -55,7 +55,7 @@ class _CustomTextFieldAndLabelState extends State<CustomTextFieldAndLabel> {
                 size: 28,
               ),
             ),
-            suffixIcon: widget.obscureTextProperty
+            suffixIcon: widget.passwordTile
                 ? GestureDetector(
                     onTap: () => setState(() => obscureText = !obscureText),
                     child: Padding(
