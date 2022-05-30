@@ -1,3 +1,5 @@
+import 'package:auth_mock_3/app/modules/auth/submodules/login/presenter/controllers/login_controller.dart';
+import 'package:auth_mock_3/app/modules/home/presenter/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
@@ -12,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final homeController = Modular.get<HomeController>();
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -31,11 +34,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     icon: Icon(
-                      IconlyBold.profile,
+                      IconlyLight.logout,
                       color: Theme.of(context).primaryColorDark,
                       size: 28,
                     ),
-                    onPressed: () => Modular.to.pushNamed('./profile'),
+                    onPressed: () async => await homeController.handleLogout(),
                   )
                 ],
               ),

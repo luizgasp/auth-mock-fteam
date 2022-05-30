@@ -5,11 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:auth_mock_3/app/core/shared/services/database/i_database_service.dart';
 
-// Como eu poderia fazer esse service melhor? Acredito que setei e atualizei as informações no firestore de uma forma errada
-// porém não sei como melhorar direito isso.
-
-// Supondo que ao invés de mandar um string no country eu queira mandar um Map<String, dynamic>, eu teria que alterar em
-// vários arquivos certo?
+// TODO - Implementar o Firestore para salvar os dados do usuário
 class FirestoreDatabaseServiceImp implements IDatabaseService {
   final FirebaseAuth _auth;
   final FirebaseFirestore _fireStore;

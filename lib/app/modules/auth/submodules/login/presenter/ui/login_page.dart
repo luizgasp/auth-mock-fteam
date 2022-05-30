@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
-import '../widgets/custom_container.dart';
-import '../widgets/custom_elevated_button.dart';
-import '../widgets/custom_text_button.dart';
-import '../widgets/custom_textfield_and_label.dart';
+import 'widgets/custom_container.dart';
+import 'widgets/custom_elevated_button.dart';
+import 'widgets/custom_text_button.dart';
+import 'widgets/custom_textfield_and_label.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final authController = Modular.get<LoginController>();
+  final loginController = Modular.get<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       CustomTextButton(
                         labelText: 'Sign Up',
-                        onPressed: () => Modular.to.navigate('./sign'),
+                        onPressed: () => Modular.to.navigate('/auth/sign/'),
                       )
                     ],
                   ),
@@ -61,14 +61,14 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Form(
-                    key: authController.formKey,
+                    key: loginController.formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomTextFieldAndLabel(
                           label: 'E-mail',
                           iconData: IconlyLight.message,
-                          controller: authController.emailController,
+                          controller: loginController.emailController,
                           validator: (email) {
                             if (email == null || email.isEmpty) {
                               return 'Please, fill this field';
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                           label: 'Password',
                           iconData: IconlyLight.lock,
                           obscureTextProperty: true,
-                          controller: authController.passwordController,
+                          controller: loginController.passwordController,
                           validator: (password) {
                             if (password == null || password.isEmpty) {
                               return 'Please, fill this field';
@@ -96,8 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                   CustomElevatedButton(
                     textButton: 'Login',
                     onPressed: () {
-                      if (authController.formKey.currentState!.validate()) {
-                        authController.handleLoginWithEmail();
+                      if (loginController.formKey.currentState!.validate()) {
+                        loginController.handleLoginWithEmail();
                       }
                     },
                   ),

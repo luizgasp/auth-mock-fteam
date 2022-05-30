@@ -15,4 +15,7 @@ class LoginRepositoryImp implements ILoginRepository {
 
   @override
   User? getCurrentUser() => loginDatasource.getCurrentUser();
+
+  @override
+  Future<void> logout() async => await loginDatasource.logout();
 }

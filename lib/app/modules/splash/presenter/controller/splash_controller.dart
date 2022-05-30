@@ -11,6 +11,6 @@ class SplashController {
 
     final currentUser = loginRepository.getCurrentUser();
 
-    return currentUser != null ? Modular.to.navigate('/home/') : Modular.to.navigate('/auth/login');
+    return currentUser != null ? Modular.to.navigate('/home/') : Modular.to.navigate('/auth/login/');
   }
 }

@@ -1,16 +1,13 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/repositories/i_signup_repository.dart';
+import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/useCases/signup/i_signup_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../../../core/shared/exceptions/implementations/auth_exception.dart';
-import '../../../../../../core/shared/services/overlay/i_overlay_service.dart';
 import '../../domain/helpers/params/signup_params.dart';
 
 class SignUpController {
-  final ISignUpRepository signUpRepository;
-  final IOverlayService overlayService;
+  final ISignUpUsecase signUpUseCase;
 
-  SignUpController(this.signUpRepository, this.overlayService);
+  SignUpController(this.signUpUseCase);
 
   final formKey = GlobalKey<FormState>();
 
@@ -25,14 +22,10 @@ class SignUpController {
       password: passwordController.text,
     );
 
-    try {
-      await signUpRepository.signUpWithEmail(params);
+    await signUpUseCase.signUpWithEmail(params);
 
-      final currentUser = signUpRepository.getCurrentUser();
+    final currentUser = signUpUseCase.getCurrentUser();
 
-      return currentUser != null ? Modular.to.navigate('/home/') : null;
-    } on AuthException catch (error) {
-      overlayService.showSnackBar(error.message);
-    }
+    return currentUser != null ? Modular.to.navigate('/home/') : null;
   }
 }

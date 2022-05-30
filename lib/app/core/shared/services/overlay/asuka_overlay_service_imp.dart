@@ -7,7 +7,7 @@ class AsukaOverlayServiceImp implements IOverlayService {
   @override
   void showSnackBar(String message) {
     final snackBar = SnackBar(
-      content: Text(message),
+      content: Text(message, textAlign: TextAlign.center),
     );
 
     asuka.showSnackBar(snackBar);

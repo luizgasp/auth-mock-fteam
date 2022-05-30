@@ -10,7 +10,7 @@ class SignUpRepositoryImp implements ISignUpRepository {
 
   @override
   Future<void> signUpWithEmail(SignUpWithEmailParams params) async {
-    throw UnimplementedError();
+    await signUpDatasource.signUpWithEmail(params);
   }
 
   @override

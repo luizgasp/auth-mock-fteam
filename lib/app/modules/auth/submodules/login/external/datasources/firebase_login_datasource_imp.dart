@@ -20,7 +20,7 @@ class FirebaseLoginDatasourceImp implements ILoginDatasource {
         case 'user-not-found':
           throw AuthException(message: 'User not found', stackTrace: stackTrace);
         case 'wrong-password':
-          throw AuthException(message: 'Weak password, please try again', stackTrace: stackTrace);
+          throw AuthException(message: 'Wrong password, please try again', stackTrace: stackTrace);
         default:
           throw AuthException(message: 'Login error', stackTrace: stackTrace);
       }

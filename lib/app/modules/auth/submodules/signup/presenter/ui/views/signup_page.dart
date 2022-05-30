@@ -46,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       CustomTextButton(
                         labelText: 'Login',
-                        onPressed: () => Modular.to.navigate('./login'),
+                        onPressed: () => Modular.to.navigate('/auth/login/'),
                       )
                     ],
                   ),
