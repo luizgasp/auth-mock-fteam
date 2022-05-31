@@ -1,5 +1,7 @@
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/entities/country_entity.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/blocs/country_api/country_bloc.dart';
+import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/profile_controller.dart';
+import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/ui/widgets/custom_title_subtitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,9 +20,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final _profileKey = GlobalKey<FormState>();
-
   final signUpController = Modular.get<SignUpController>();
+  final profileController = Modular.get<ProfileController>();
+
   final countryBloc = Modular.get<CountryBloc>();
 
   @override
@@ -43,27 +45,9 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 32, left: 24, right: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: size.height * 0.04),
-                  Text(
-                    '😎 Setting up your\nprofile',
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
-                  SizedBox(height: size.height * 0.03),
-                  Row(
-                    children: [
-                      Text(
-                        'Add your profile photo',
-                        style: TextStyle(color: Theme.of(context).dialogBackgroundColor),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            const CustomTitleSubtitile(
+              title: '😎 Setting up your\nprofile',
+              subtitle: 'Add your profile photo',
             ),
             CustomContainer(
               child: Stack(
@@ -103,12 +87,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                 (country) => DropdownMenuItem(
                                   value: country,
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
                                         width: 100,
                                         height: 100,
-                                        child: SvgPicture.network(country.countryImage),
+                                        child: SvgPicture.network(
+                                            country.countryImage),
                                       ),
                                       Text(country.name),
                                     ],

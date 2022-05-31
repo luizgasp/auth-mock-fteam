@@ -11,11 +11,11 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'AuthIII',
-      builder: asuka.builder,
       theme: MainTheme.getTheme(),
       debugShowCheckedModeBanner: false,
       routerDelegate: Modular.routerDelegate,
       routeInformationParser: Modular.routeInformationParser,
+      builder: asuka.builder,
     );
   }
 }

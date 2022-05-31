@@ -3,7 +3,6 @@ import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/helpers/log
 import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/repositories/i_login_repository.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/useCases/i_login_usecase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../../core/shared/exceptions/implementations/auth_exception.dart';
 

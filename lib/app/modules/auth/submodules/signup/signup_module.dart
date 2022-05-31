@@ -5,6 +5,7 @@ import 'package:auth_mock_3/app/modules/auth/submodules/signup/external/datasour
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/infra/repositories/country_repository_imp.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/infra/repositories/signup_repository_imp.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/blocs/country_api/country_bloc.dart';
+import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/profile_controller.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/signup_controller.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/ui/views/profile_page.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/ui/views/signup_page.dart';
@@ -23,7 +24,10 @@ class SignUpModule extends Module {
         Bind.factory((i) => CountryDatasourceImp()),
         Bind.factory((i) => CountryRepositoryImp(i())),
         Bind.factory((i) => CountryUsecaseImp(i(), i())),
-        Bind.singleton((i) => CountryBloc(i()))
+        Bind.singleton((i) => CountryBloc(i())),
+
+        //Profile
+        Bind.singleton((i) => ProfileController()),
       ];
 
   @override
