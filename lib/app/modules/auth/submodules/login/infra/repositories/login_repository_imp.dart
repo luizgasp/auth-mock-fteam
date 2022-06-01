@@ -1,7 +1,11 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/dtos/login_params_dto.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/repositories/i_login_repository.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/login/infra/datasources/i_login_datasource.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../../../../core/shared/exceptions/auth_exception.dart';
+import '../../../../../../core/shared/exceptions/i_app_exception.dart';
+import '../../../../../../core/utils/either.dart';
+import '../../domain/dtos/login_params_dto.dart';
+import '../../domain/repositories/i_login_repository.dart';
+import '../datasources/i_login_datasource.dart';
 
 class LoginRepositoryImp implements ILoginRepository {
   final ILoginDatasource loginDatasource;
@@ -9,13 +13,25 @@ class LoginRepositoryImp implements ILoginRepository {
   LoginRepositoryImp(this.loginDatasource);
 
   @override
-  Future<void> loginWithEmail(LoginWithEmailParamsDTO params) async {
-    await loginDatasource.loginWithEmail(params);
+  Future<Either<IAppException, Unit>> loginWithEmail(LoginWithEmailParamsDTO params) async {
+    try {
+      await loginDatasource.loginWithEmail(params);
+      return right(unit);
+    } on AuthException catch (error) {
+      return left(error);
+    }
   }
 
   @override
   User? getCurrentUser() => loginDatasource.getCurrentUser();
 
   @override
-  Future<void> logout() async => await loginDatasource.logout();
+  Future<Either<IAppException, Unit>> logout() async {
+    try {
+      await loginDatasource.logout();
+      return right(unit);
+    } on AuthException catch (error) {
+      return left(error);
+    }
+  }
 }

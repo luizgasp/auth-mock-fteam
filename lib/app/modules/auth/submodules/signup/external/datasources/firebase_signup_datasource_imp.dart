@@ -2,7 +2,7 @@ import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/dtos/signu
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/infra/datasources/i_signup_datasource.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../../../core/shared/exceptions/implementations/auth_exception.dart';
+import '../../../../../../core/shared/exceptions/auth_exception.dart';
 
 class FirebaseSignUpDatasourceImp implements ISignUpDatasource {
   final FirebaseAuth _auth;

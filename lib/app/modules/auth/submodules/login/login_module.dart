@@ -1,10 +1,12 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/useCases/login_usecase.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/login/external/datasources/firebase_login_datasource_imp.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/login/infra/repositories/login_repository_imp.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/login/presenter/controllers/login_controller.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/login/presenter/ui/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'domain/useCases/login_usecase.dart';
+import 'external/datasources/firebase_login_datasource_imp.dart';
+import 'infra/repositories/login_repository_imp.dart';
+import 'presenter/controllers/login_controller.dart';
+import 'presenter/stores/login_store.dart';
+import 'presenter/ui/login_page.dart';
 
 class LoginModule extends Module {
   @override
@@ -12,6 +14,7 @@ class LoginModule extends Module {
         Bind.factory((i) => FirebaseLoginDatasourceImp(FirebaseAuth.instance), export: true),
         Bind.factory((i) => LoginRepositoryImp(i()), export: true),
         Bind.factory((i) => LoginUsecase(i(), i())),
+        Bind.singleton((i) => LoginStore(i(), i())),
         Bind.singleton((i) => LoginController(i())),
       ];
 

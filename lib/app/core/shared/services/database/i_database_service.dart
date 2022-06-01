@@ -1,5 +1,5 @@
-import '../../dtos/create_user_params_dto.dart';
+import 'dtos/create_user_dto.dart';
 
 abstract class IDatabaseService {
-  Future<void> createUserInDB(CreateUserParamsDTO params);
+  Future<void> createUserInDB(CreateUserDTO params);
 }

@@ -1,8 +1,8 @@
+import 'package:auth_mock_3/app/core/shared/helpers/specifications/string_specification.dart';
+
 class PasswordSpecification {
   static bool isSatisfiedBy(String? password) {
-    if (password == null || password.isEmpty) {
-      return false;
-    } else if (password.length < 6) {
+    if (!StringSpecification.isSatisfiedBy(password) || password!.length < 6) {
       return false;
     }
 

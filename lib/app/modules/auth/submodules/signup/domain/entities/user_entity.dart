@@ -1,5 +1,7 @@
+import '../../../../../../core/shared/helpers/value_objects/name_type.dart';
+
 class UserEntity {
-  final String name;
+  final NameType name;
   final String cpf;
   final String rg;
   final String country;

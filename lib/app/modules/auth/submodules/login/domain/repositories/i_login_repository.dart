@@ -1,8 +1,11 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/dtos/login_params_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../../../../core/shared/exceptions/i_app_exception.dart';
+import '../../../../../../core/utils/either.dart';
+import '../dtos/login_params_dto.dart';
+
 abstract class ILoginRepository {
-  Future<void> loginWithEmail(LoginWithEmailParamsDTO params);
-  Future<void> logout();
+  Future<Either<IAppException, Unit>> loginWithEmail(LoginWithEmailParamsDTO params);
+  Future<Either<IAppException, Unit>> logout();
   User? getCurrentUser();
 }

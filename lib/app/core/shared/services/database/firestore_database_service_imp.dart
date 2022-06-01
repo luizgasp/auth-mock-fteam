@@ -1,10 +1,9 @@
-import 'package:auth_mock_3/app/core/shared/dtos/create_user_params_dto.dart';
-import 'package:auth_mock_3/app/core/shared/exceptions/implementations/database_exception.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:auth_mock_3/app/core/shared/services/database/i_database_service.dart';
+import '../../exceptions/database_exception.dart';
+import 'dtos/create_user_dto.dart';
+import 'i_database_service.dart';
 
 class FirestoreDatabaseServiceImp implements IDatabaseService {
   final FirebaseAuth _auth;
@@ -17,7 +16,7 @@ class FirestoreDatabaseServiceImp implements IDatabaseService {
         _fireStore = fireStore;
 
   @override
-  Future<void> createUserInDB(CreateUserParamsDTO params) async {
+  Future<void> createUserInDB(CreateUserDTO params) async {
     try {
       await _fireStore.collection('users').doc(_auth.currentUser!.uid).set({
         "name": params.name,

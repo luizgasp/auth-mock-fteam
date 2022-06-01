@@ -1,8 +1,8 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/dtos/login_params_dto.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/login/infra/datasources/i_login_datasource.dart';
+import '../../domain/dtos/login_params_dto.dart';
+import '../../infra/datasources/i_login_datasource.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../../../core/shared/exceptions/implementations/auth_exception.dart';
+import '../../../../../../core/shared/exceptions/auth_exception.dart';
 
 class FirebaseLoginDatasourceImp implements ILoginDatasource {
   final FirebaseAuth _auth;

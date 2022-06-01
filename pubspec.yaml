@@ -19,6 +19,7 @@ dependencies:
   cloud_firestore: ^3.1.17
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
+  flutter_triple: ^1.2.7+2
   asuka: ^2.0.0+1
   iconly: ^1.0.1
   flutter_svg: ^1.1.0

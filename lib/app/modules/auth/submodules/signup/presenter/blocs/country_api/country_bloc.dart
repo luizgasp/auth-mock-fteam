@@ -1,6 +1,6 @@
-import 'package:auth_mock_3/app/core/shared/exceptions/implementations/country_api_exception.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/entities/country_entity.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/useCases/countryApi/i_country_usecase.dart';
+import '../../../../../../../core/shared/exceptions/country_api_exception.dart';
+import '../../../domain/entities/country_entity.dart';
+import '../../../domain/useCases/countryApi/i_country_usecase.dart';
 import "package:flutter_bloc/flutter_bloc.dart";
 import 'package:equatable/equatable.dart';
 
@@ -15,7 +15,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       try {
         final countries = await countryUsecase.getCountries();
         emit(CountryLoadedState(countries: countries));
-      } on CountryApiException catch (error) {
+      } on CountryApiException {
         emit(CountryErrorState());
         //throw CountryApiException(message: error.message, stackTrace: stackTrace);
       }

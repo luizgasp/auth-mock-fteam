@@ -94,7 +94,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           passwordTile: true,
                           controller: signUpController.confirmPasswordController,
                           validator: (confirmPassword) => ConfirmPasswordType.hasError(
-                              signUpController.confirmPasswordController.text, confirmPassword),
+                            signUpController.passwordController.text,
+                            confirmPassword,
+                          ),
                         ),
                       ],
                     ),
