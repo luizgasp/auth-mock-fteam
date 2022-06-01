@@ -1,3 +1,8 @@
+import 'package:auth_mock_3/app/core/constants/strings.dart';
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/confirm_password_type.dart';
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/email_type.dart';
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/name_type.dart';
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/password_type.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -34,19 +39,19 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: [
                   SizedBox(height: size.height * 0.04),
                   Text(
-                    '👋 Hello, \nAre you new here?',
+                    Strings.signUpTitle,
                     style: Theme.of(context).textTheme.headline1,
                   ),
                   SizedBox(height: size.height * 0.03),
                   Row(
                     children: [
                       Text(
-                        'if you have an account /',
+                        Strings.signUpSubtitle,
                         style: TextStyle(color: Theme.of(context).dialogBackgroundColor),
                       ),
                       CustomTextButton(
-                        labelText: 'Login',
-                        onPressed: () => Modular.to.navigate('/auth/login/'),
+                        labelText: Strings.loginButton,
+                        onPressed: signUpController.goToLogin,
                       )
                     ],
                   ),
@@ -61,60 +66,35 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Column(
                       children: [
                         CustomTextFieldAndLabel(
-                          label: 'Full Name',
+                          label: Strings.nameField,
                           iconData: IconlyLight.profile,
                           controller: signUpController.nameController,
-                          validator: (name) {
-                            if (name == null || name.isEmpty) {
-                              return 'Please, fill this field';
-                            }
-                            return null;
-                          },
+                          validator: NameType.hasError,
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
-                          label: 'E-mail',
+                          label: Strings.emailField,
                           iconData: IconlyLight.message,
                           controller: signUpController.emailController,
                           keyboardType: TextInputType.emailAddress,
-                          validator: (email) {
-                            if (email == null || email.isEmpty) {
-                              return 'Please, fill this field';
-                            } else if (!email.contains('@') && !email.contains('.')) {
-                              return 'Please, enter a valid e-mail';
-                            }
-                            return null;
-                          },
+                          validator: EmailType.hasError,
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
-                          label: 'Password',
+                          label: Strings.passwordField,
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           controller: signUpController.passwordController,
-                          validator: (password) {
-                            if (password == null || password.isEmpty) {
-                              return 'Please, fill this field';
-                            } else if (password.length < 6) {
-                              return 'Your password must contain at least 6 characters';
-                            }
-                            return null;
-                          },
+                          validator: PasswordType.hasError,
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
-                          label: 'Confirm Password',
+                          label: Strings.confirmPasswordField,
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           controller: signUpController.confirmPasswordController,
-                          validator: (confirmPassword) {
-                            if (confirmPassword == null || confirmPassword.isEmpty) {
-                              return 'Please, fill this field';
-                            } else if (signUpController.passwordController.text != confirmPassword) {
-                              return 'Please, your passwords need to match';
-                            }
-                            return null;
-                          },
+                          validator: (confirmPassword) => ConfirmPasswordType.hasError(
+                              signUpController.confirmPasswordController.text, confirmPassword),
                         ),
                       ],
                     ),
@@ -122,14 +102,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   Padding(
                     padding: EdgeInsets.only(top: size.height * 0.6),
                     child: CustomElevatedButton(
-                      textButton: 'Sign Up',
-                      onPressed: () async {
-                        // TODO - VOLTAR O VALIDAÇÂO DE CONTROLLER PELO IF
-                        // if (authController.formKey.currentState!.validate()) {
-                        //   Modular.to.navigate('/auth/sign/profile/');
-                        // }
-                        Modular.to.pushNamed("/auth/sign/profile");
-                      },
+                      textButton: Strings.signUpButton,
+                      onPressed: signUpController.goToProfile,
                     ),
                   ),
                 ],

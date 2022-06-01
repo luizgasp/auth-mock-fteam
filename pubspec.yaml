@@ -17,11 +17,12 @@ dependencies:
   firebase_core: ^1.17.0
   firebase_auth: ^3.3.10
   cloud_firestore: ^3.1.17
-  asuka: ^2.0.0+1
-  iconly: ^1.0.1
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
+  asuka: ^2.0.0+1
+  iconly: ^1.0.1
   flutter_svg: ^1.1.0
+  string_validator: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -33,7 +34,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/app/core/shared/utils/countries.json
+    - lib/app/core/utils/countries.json
 
   fonts:
     - family: Cocon

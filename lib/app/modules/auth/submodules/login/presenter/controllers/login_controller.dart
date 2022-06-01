@@ -1,8 +1,7 @@
+import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/dtos/login_params_dto.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/useCases/i_login_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import '../../domain/helpers/login_params.dart';
 
 class LoginController {
   final ILoginUsecase loginUsecase;
@@ -14,7 +13,7 @@ class LoginController {
   final passwordController = TextEditingController();
 
   Future<void> handleLoginWithEmail() async {
-    final params = LoginWithEmailParams(
+    final params = LoginWithEmailParamsDTO(
       email: emailController.text,
       password: passwordController.text,
     );

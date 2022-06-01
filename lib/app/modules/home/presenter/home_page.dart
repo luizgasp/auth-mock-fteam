@@ -1,4 +1,4 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/login/presenter/controllers/login_controller.dart';
+import 'package:auth_mock_3/app/core/constants/strings.dart';
 import 'package:auth_mock_3/app/modules/home/presenter/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '🎉 Home',
+                    Strings.homeTitle,
                     style: Theme.of(context).textTheme.headline1,
                   ),
                   IconButton(

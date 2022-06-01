@@ -1,11 +1,11 @@
-class CreateUserParams {
+class CreateUserParamsDTO {
   final String name;
   final String email;
   final String cpf;
   final String rg;
   final String country;
 
-  CreateUserParams({
+  CreateUserParamsDTO({
     required this.name,
     required this.email,
     required this.cpf,

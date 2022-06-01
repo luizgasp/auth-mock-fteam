@@ -8,7 +8,7 @@ class CountryDatasourceImp implements ICountryDatasource {
 
   @override
   Future<List> call() async {
-    final response = await rootBundle.loadString("lib/app/core/shared/utils/countries.json");
+    final response = await rootBundle.loadString("lib/app/core/utils/countries.json");
     final data = await jsonDecode(response);
 
     return data['countries'] as List;

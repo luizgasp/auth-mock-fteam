@@ -1,8 +1,8 @@
-class SignUpWithEmailParams {
+class LoginWithEmailParamsDTO {
   final String email;
   final String password;
 
-  SignUpWithEmailParams({
+  LoginWithEmailParamsDTO({
     required this.email,
     required this.password,
   });

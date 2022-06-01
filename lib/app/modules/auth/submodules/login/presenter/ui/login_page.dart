@@ -1,8 +1,11 @@
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/email_type.dart';
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/password_type.dart';
 import 'package:auth_mock_3/app/modules/auth/submodules/login/presenter/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../../../../../core/constants/strings.dart';
 import 'widgets/custom_container.dart';
 import 'widgets/custom_elevated_button.dart';
 import 'widgets/custom_text_button.dart';
@@ -34,18 +37,18 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   SizedBox(height: size.height * 0.04),
                   Text(
-                    "👋 Hey, \nIt's nice to see you again!",
+                    Strings.loginTitle,
                     style: Theme.of(context).textTheme.headline1,
                   ),
                   SizedBox(height: size.height * 0.03),
                   Row(
                     children: [
                       Text(
-                        "if you don't have an account /",
+                        Strings.loginSubtitle,
                         style: TextStyle(color: Theme.of(context).dialogBackgroundColor),
                       ),
                       CustomTextButton(
-                        labelText: 'Sign Up',
+                        labelText: Strings.signUpButton,
                         onPressed: () => Modular.to.navigate('/auth/sign/'),
                       )
                     ],
@@ -66,35 +69,25 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomTextFieldAndLabel(
-                          label: 'E-mail',
+                          label: Strings.emailField,
                           iconData: IconlyLight.message,
                           controller: loginController.emailController,
-                          validator: (email) {
-                            if (email == null || email.isEmpty) {
-                              return 'Please, fill this field';
-                            }
-                            return null;
-                          },
+                          validator: EmailType.hasError,
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
-                          label: 'Password',
+                          label: Strings.passwordField,
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           controller: loginController.passwordController,
-                          validator: (password) {
-                            if (password == null || password.isEmpty) {
-                              return 'Please, fill this field';
-                            }
-                            return null;
-                          },
+                          validator: PasswordType.hasError,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: size.height * 0.1),
                   CustomElevatedButton(
-                    textButton: 'Login',
+                    textButton: Strings.loginButton,
                     onPressed: () {
                       if (loginController.formKey.currentState!.validate()) {
                         loginController.handleLoginWithEmail();

@@ -1,13 +1,15 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/entities/country_entity.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/blocs/country_api/country_bloc.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/profile_controller.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/ui/widgets/custom_title_subtitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconly/iconly.dart';
 
+import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/entities/country_entity.dart';
+import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/blocs/country_api/country_bloc.dart';
+import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/profile_controller.dart';
+import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/ui/widgets/custom_title_subtitle.dart';
+
+import '../../../../../../../core/constants/strings.dart';
 import '../../../../login/presenter/ui/widgets/custom_container.dart';
 import '../../../../login/presenter/ui/widgets/custom_textfield_and_label.dart';
 import '../../controllers/signup_controller.dart';
@@ -33,8 +35,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
@@ -45,9 +45,9 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomTitleSubtitile(
-              title: '😎 Setting up your\nprofile',
-              subtitle: 'Add your profile photo',
+            CustomTitleSubtitile(
+              title: Strings.profileTitle,
+              subtitle: Strings.profileSubtitle,
             ),
             CustomContainer(
               child: Stack(
@@ -56,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Column(
                       children: [
                         CustomTextFieldAndLabel(
-                          label: 'Full Name',
+                          label: Strings.nameField,
                           iconData: IconlyLight.profile,
                           controller: signUpController.nameController,
                           validator: (name) {
@@ -69,7 +69,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       ],
                     ),
                   ),
-                  // TODO - Fazer com que possa selecionar o país no dropdown button, implementando um ProfileController
                   BlocBuilder<CountryBloc, CountryState>(
                     bloc: countryBloc,
                     builder: (_, state) {
@@ -79,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         final countries = state.countries;
 
                         return DropdownButton<CountryEntity>(
-                          hint: const Text("Selecione seu país"),
+                          hint: Text(Strings.profileCountryTitle),
                           value: countries[0],
                           onChanged: (country) {},
                           items: countries
@@ -87,14 +86,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                 (country) => DropdownMenuItem(
                                   value: country,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
                                         width: 100,
                                         height: 100,
-                                        child: SvgPicture.network(
-                                            country.countryImage),
+                                        child: SvgPicture.network(country.countryImage),
                                       ),
                                       Text(country.name),
                                     ],
