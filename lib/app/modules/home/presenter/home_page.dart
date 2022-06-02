@@ -1,8 +1,9 @@
-import 'package:auth_mock_3/app/core/constants/strings.dart';
-import 'package:auth_mock_3/app/modules/home/presenter/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
+
+import '../../../core/constants/strings.dart';
+import 'controllers/home_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

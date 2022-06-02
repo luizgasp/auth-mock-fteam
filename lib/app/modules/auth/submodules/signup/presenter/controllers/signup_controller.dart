@@ -1,7 +1,8 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/dtos/signup_params.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/useCases/signup/i_signup_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../domain/dtos/signup_dto.dart';
+import '../../domain/useCases/signup/i_signup_usecase.dart';
 
 //
 class SignUpController {
@@ -20,7 +21,7 @@ class SignUpController {
   void goToProfile() => Modular.to.pushNamed("/auth/sign/profile");
 
   Future<void> handleSignUpWithEmail() async {
-    final params = SignUpWithEmailParamsDTO(
+    final params = SignUpWithEmailDTO(
       email: emailController.text,
       password: passwordController.text,
     );

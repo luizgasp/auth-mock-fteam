@@ -14,7 +14,7 @@ class LoginUsecase implements ILoginUsecase {
   const LoginUsecase(this.loginRepository, this.overlayService);
 
   @override
-  Future<Either<IAppException, Unit>> loginWithEmail(LoginWithEmailParamsDTO params) async {
+  Future<Either<IAppException, Unit>> loginWithEmail(LoginWithEmailDTO params) async {
     return await loginRepository.loginWithEmail(params);
   }
 

@@ -5,7 +5,7 @@ import '../../../../../../core/utils/either.dart';
 import '../dtos/login_params_dto.dart';
 
 abstract class ILoginRepository {
-  Future<Either<IAppException, Unit>> loginWithEmail(LoginWithEmailParamsDTO params);
+  Future<Either<IAppException, Unit>> loginWithEmail(LoginWithEmailDTO params);
   Future<Either<IAppException, Unit>> logout();
   User? getCurrentUser();
 }

@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
+import "package:flutter_bloc/flutter_bloc.dart";
+
 import '../../../../../../../core/shared/exceptions/country_api_exception.dart';
 import '../../../domain/entities/country_entity.dart';
 import '../../../domain/useCases/countryApi/i_country_usecase.dart';
-import "package:flutter_bloc/flutter_bloc.dart";
-import 'package:equatable/equatable.dart';
 
 part 'country_event.dart';
 part 'country_state.dart';

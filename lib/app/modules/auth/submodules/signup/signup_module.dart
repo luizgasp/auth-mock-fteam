@@ -1,16 +1,17 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/useCases/countryApi/country_usecase_imp.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/useCases/signup/signup_usecase.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/external/datasources/country_datasource_imp.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/external/datasources/firebase_signup_datasource_imp.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/infra/repositories/country_repository_imp.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/infra/repositories/signup_repository_imp.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/blocs/country_api/country_bloc.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/profile_controller.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/signup_controller.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/ui/views/profile_page.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/ui/views/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'domain/useCases/countryApi/country_usecase_imp.dart';
+import 'domain/useCases/signup/signup_usecase.dart';
+import 'external/datasources/country_datasource_imp.dart';
+import 'external/datasources/firebase_signup_datasource_imp.dart';
+import 'infra/repositories/country_repository_imp.dart';
+import 'infra/repositories/signup_repository_imp.dart';
+import 'presenter/blocs/country_api/country_bloc.dart';
+import 'presenter/controllers/profile_controller.dart';
+import 'presenter/controllers/signup_controller.dart';
+import 'presenter/ui/views/profile_page.dart';
+import 'presenter/ui/views/signup_page.dart';
 
 class SignUpModule extends Module {
   @override

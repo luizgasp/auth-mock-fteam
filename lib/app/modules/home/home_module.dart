@@ -1,7 +1,8 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/login/login_module.dart';
-import 'package:auth_mock_3/app/modules/home/presenter/controllers/home_controller.dart';
-import 'package:auth_mock_3/app/modules/home/presenter/home_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../auth/submodules/login/login_module.dart';
+import 'presenter/controllers/home_controller.dart';
+import 'presenter/home_page.dart';
 
 class HomeModule extends Module {
   @override

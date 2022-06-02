@@ -1,8 +1,9 @@
-import 'package:auth_mock_3/app/core/core_module.dart';
-import 'package:auth_mock_3/app/modules/auth/auth_module.dart';
-import 'package:auth_mock_3/app/modules/home/home_module.dart';
-import 'package:auth_mock_3/app/modules/splash/splash_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'core/core_module.dart';
+import 'modules/auth/auth_module.dart';
+import 'modules/home/home_module.dart';
+import 'modules/splash/splash_module.dart';
 
 class AppModule extends Module {
   @override

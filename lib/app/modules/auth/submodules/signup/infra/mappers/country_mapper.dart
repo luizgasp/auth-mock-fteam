@@ -1,4 +1,4 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/entities/country_entity.dart';
+import '../../domain/entities/country_entity.dart';
 
 class CountryMapper extends CountryEntity {
   CountryMapper({

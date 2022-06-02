@@ -1,5 +1,6 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/login/domain/useCases/i_login_usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../../auth/submodules/login/domain/useCases/i_login_usecase.dart';
 
 class HomeController {
   final ILoginUsecase loginUsecase;

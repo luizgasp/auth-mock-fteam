@@ -1,7 +1,9 @@
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/entities/country_entity.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/repositories/i_country_repository.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/infra/datasources/i_country_datasource.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/infra/mappers/country_mapper.dart';
+// ignore_for_file: unnecessary_lambdas
+
+import '../../domain/entities/country_entity.dart';
+import '../../domain/repositories/i_country_repository.dart';
+import '../datasources/i_country_datasource.dart';
+import '../mappers/country_mapper.dart';
 
 class CountryRepositoryImp implements ICountryRepository {
   final ICountryDatasource countryDatasource;

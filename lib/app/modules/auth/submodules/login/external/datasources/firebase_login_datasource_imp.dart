@@ -1,8 +1,8 @@
-import '../../domain/dtos/login_params_dto.dart';
-import '../../infra/datasources/i_login_datasource.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../../../core/shared/exceptions/auth_exception.dart';
+import '../../domain/dtos/login_params_dto.dart';
+import '../../infra/datasources/i_login_datasource.dart';
 
 class FirebaseLoginDatasourceImp implements ILoginDatasource {
   final FirebaseAuth _auth;
@@ -10,7 +10,7 @@ class FirebaseLoginDatasourceImp implements ILoginDatasource {
   FirebaseLoginDatasourceImp(FirebaseAuth auth) : _auth = auth;
 
   @override
-  Future<void> loginWithEmail(LoginWithEmailParamsDTO params) async {
+  Future<void> loginWithEmail(LoginWithEmailDTO params) async {
     try {
       await _auth.signInWithEmailAndPassword(email: params.email, password: params.password);
     } on FirebaseAuthException catch (e, stackTrace) {

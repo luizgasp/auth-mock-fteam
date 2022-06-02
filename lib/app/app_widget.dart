@@ -1,8 +1,8 @@
-import 'package:auth_mock_3/app/core/themes/main_theme.dart';
+import "package:asuka/asuka.dart" as asuka;
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import "package:asuka/asuka.dart" as asuka;
+import 'core/themes/main_theme.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
