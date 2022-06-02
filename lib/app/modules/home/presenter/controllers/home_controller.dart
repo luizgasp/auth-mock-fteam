@@ -1,13 +1,16 @@
-import '../../../../core/shared/services/auth/i_auth_service.dart';
+import 'package:auth_mock_3/app/modules/home/presenter/stores/logout_store.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeController {
-  final IAuthService _authService;
+  final LogoutStore _logoutStore;
 
-  const HomeController(IAuthService authService) : _authService = authService;
+  const HomeController(LogoutStore logoutStore) : _logoutStore = logoutStore;
+
+  void _navigateToLogin() => Modular.to.navigate('/auth/login/');
 
   Future<void> handleLogout() async {
-    // await _authService.logout();
+    await _logoutStore.logout();
 
-    // Modular.to.navigate('/auth/login/');
+    return _logoutStore.state ? _navigateToLogin() : null;
   }
 }

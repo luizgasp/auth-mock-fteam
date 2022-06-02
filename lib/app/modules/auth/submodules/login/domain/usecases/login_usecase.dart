@@ -18,5 +18,10 @@ class LoginUsecase implements ILoginUsecase {
   }
 
   @override
+  Future<Either<IAppException, Unit>> logout() async {
+    return await loginRepository.logout();
+  }
+
+  @override
   UserEntityService? getCurrentUser() => loginRepository.getCurrentUser();
 }

@@ -6,8 +6,9 @@ class CustomTextFieldAndLabel extends StatefulWidget {
   final IconData iconData;
   final TextInputType? keyboardType;
   final bool passwordTile;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
   const CustomTextFieldAndLabel({
     Key? key,
@@ -15,8 +16,9 @@ class CustomTextFieldAndLabel extends StatefulWidget {
     required this.iconData,
     this.keyboardType,
     this.passwordTile = false,
-    required this.controller,
+    this.controller,
     required this.validator,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -73,6 +75,7 @@ class _CustomTextFieldAndLabelState extends State<CustomTextFieldAndLabel> {
             ),
             contentPadding: const EdgeInsets.symmetric(vertical: 17),
           ),
+          onChanged: widget.onChanged,
           validator: widget.validator,
         ),
       ],

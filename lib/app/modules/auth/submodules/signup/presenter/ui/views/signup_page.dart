@@ -5,9 +5,9 @@ import 'package:iconly/iconly.dart';
 import '../../../../../../../core/constants/strings.dart';
 import '../../../../login/presenter/ui/widgets/custom_container.dart';
 import '../../../../login/presenter/ui/widgets/custom_elevated_button.dart';
-import '../../../../login/presenter/ui/widgets/custom_text_button.dart';
 import '../../../../login/presenter/ui/widgets/custom_textfield_and_label.dart';
 import '../../controllers/signup_controller.dart';
+import '../widgets/custom_panel_text_with_button.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -28,31 +28,11 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 32, left: 24, right: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: size.height * 0.04),
-                  Text(
-                    Strings.signUpTitle,
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
-                  SizedBox(height: size.height * 0.03),
-                  Row(
-                    children: [
-                      Text(
-                        Strings.signUpSubtitle,
-                        style: TextStyle(color: Theme.of(context).dialogBackgroundColor),
-                      ),
-                      CustomTextButton(
-                        labelText: Strings.loginButton,
-                        onPressed: signUpController.navigateToLogin,
-                      )
-                    ],
-                  ),
-                ],
-              ),
+            CustomPainelTextWithButton(
+              title: Strings.signUpTitle,
+              subtitle: Strings.signUpSubtitle,
+              buttonLabel: Strings.loginButton,
+              onPressed: signUpController.navigateToLogin,
             ),
             CustomContainer(
               child: Stack(
@@ -64,40 +44,32 @@ class _SignUpPageState extends State<SignUpPage> {
                         CustomTextFieldAndLabel(
                           label: Strings.nameField,
                           iconData: IconlyLight.profile,
-                          controller: signUpController.nameController,
-                          validator: (value) {
-                            return null;
-                          },
+                          onChanged: (value) => signUpController.name = value,
+                          validator: (value) => signUpController.nameInstance.hasError(),
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: Strings.emailField,
                           iconData: IconlyLight.message,
-                          controller: signUpController.emailController,
                           keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            return null;
-                          },
+                          onChanged: (value) => signUpController.email = value,
+                          validator: (value) => signUpController.emailInstace.hasError(),
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: Strings.passwordField,
                           iconData: IconlyLight.lock,
                           passwordTile: true,
-                          controller: signUpController.passwordController,
-                          validator: (value) {
-                            return null;
-                          },
+                          onChanged: (value) => signUpController.password = value,
+                          validator: (value) => signUpController.passwordInstace.hasError(),
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: Strings.confirmPasswordField,
                           iconData: IconlyLight.lock,
                           passwordTile: true,
-                          controller: signUpController.confirmPasswordController,
-                          validator: (value) {
-                            return null;
-                          },
+                          onChanged: (value) => signUpController.confirmPassword = value,
+                          validator: (value) => signUpController.confirmPasswordInstace.hasError(),
                         ),
                       ],
                     ),

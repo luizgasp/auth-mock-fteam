@@ -8,6 +8,7 @@ import 'infra/repositories/country_repository_imp.dart';
 import 'infra/repositories/signup_repository_imp.dart';
 import 'presenter/controllers/profile_controller.dart';
 import 'presenter/controllers/signup_controller.dart';
+import 'presenter/stores/signup_store.dart';
 import 'presenter/ui/views/profile_page.dart';
 import 'presenter/ui/views/signup_page.dart';
 
@@ -17,6 +18,7 @@ class SignUpModule extends Module {
         Bind.factory((i) => FirebaseSignUpDatasourceImp(i())),
         Bind.factory((i) => SignUpRepositoryImp(i())),
         Bind.factory((i) => SignUpUsecase(i())),
+        Bind.singleton((i) => SignUpStore(i(), i())),
         Bind.singleton((i) => SignUpController(i())),
 
         // Country API

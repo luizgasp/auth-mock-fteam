@@ -45,13 +45,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         CustomTextFieldAndLabel(
                           label: Strings.nameField,
                           iconData: IconlyLight.profile,
-                          controller: signUpController.nameController,
-                          validator: (name) {
-                            if (name == null || name.isEmpty) {
-                              return 'Please, fill this field';
-                            }
-                            return null;
-                          },
+                          onChanged: (value) => signUpController.name = value,
+                          validator: (value) => signUpController.nameInstance.hasError(),
                         ),
                       ],
                     ),

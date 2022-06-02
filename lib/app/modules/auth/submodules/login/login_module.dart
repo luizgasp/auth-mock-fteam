@@ -12,7 +12,7 @@ class LoginModule extends Module {
   List<Bind<Object>> get binds => [
         Bind.factory((i) => FirebaseLoginDatasourceImp(i()), export: true),
         Bind.factory((i) => LoginRepositoryImp(i()), export: true),
-        Bind.factory((i) => LoginUsecase(i(), i())),
+        Bind.factory((i) => LoginUsecase(i(), i()), export: true),
         Bind.singleton((i) => LoginStore(i(), i())),
         Bind.singleton((i) => LoginController(i())),
       ];

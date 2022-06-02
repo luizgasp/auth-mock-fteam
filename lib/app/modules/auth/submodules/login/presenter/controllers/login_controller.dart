@@ -1,7 +1,8 @@
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/email.dart';
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../../../core/shared/helpers/value_objects/email.dart';
 import '../../../../../../core/shared/services/auth/dtos/login_with_email_dto.dart';
 import '../stores/login_store.dart';
 
@@ -11,19 +12,27 @@ class LoginController {
   LoginController(this.loginStore);
 
   final formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
-  Email? get email => Email(emailController.text);
+  void _navigatoToHome() => Modular.to.navigate('/home/');
+  void navigatoToSignUp() => Modular.to.navigate('/auth/sign/');
+
+  // Fields
+  Email emailInstace = Email();
+  String get email => emailInstace.value;
+  set email(String newValue) => emailInstace.value = newValue;
+
+  Password passwordInstace = Password();
+  String get password => passwordInstace.value;
+  set password(String newValue) => passwordInstace.value = newValue;
 
   Future<void> handleLoginWithEmail() async {
     final params = LoginWithEmailDTO(
-      email: emailController.text,
-      password: passwordController.text,
+      email: email,
+      password: password,
     );
 
     await loginStore.loginWithEmail(params);
 
-    return loginStore.state ? Modular.to.navigate('/home/') : null;
+    return loginStore.state ? _navigatoToHome() : null;
   }
 }

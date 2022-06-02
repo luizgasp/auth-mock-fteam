@@ -48,6 +48,9 @@ class FirebaseAuthServiceImp implements IAuthService {
   }
 
   @override
+  Future<void> logout() async => await _auth.signOut();
+
+  @override
   UserEntityService? getCurrentUser() {
     final currentUser = _auth.currentUser;
 
