@@ -8,7 +8,7 @@ import '../mappers/country_mapper.dart';
 class CountryRepositoryImp implements ICountryRepository {
   final ICountryDatasource countryDatasource;
 
-  CountryRepositoryImp(this.countryDatasource);
+  const CountryRepositoryImp(this.countryDatasource);
 
   @override
   Future<List<CountryEntity>> getCountries() async {

@@ -1,17 +1,13 @@
-import 'package:auth_mock_3/app/core/constants/strings.dart';
-import 'package:auth_mock_3/app/core/shared/helpers/value_objects/confirm_password_type.dart';
-import 'package:auth_mock_3/app/core/shared/helpers/value_objects/email_type.dart';
-import 'package:auth_mock_3/app/core/shared/helpers/value_objects/name_type.dart';
-import 'package:auth_mock_3/app/core/shared/helpers/value_objects/password_type.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../../../../../../core/constants/strings.dart';
 import '../../../../login/presenter/ui/widgets/custom_container.dart';
 import '../../../../login/presenter/ui/widgets/custom_elevated_button.dart';
 import '../../../../login/presenter/ui/widgets/custom_text_button.dart';
 import '../../../../login/presenter/ui/widgets/custom_textfield_and_label.dart';
+import '../../controllers/signup_controller.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -51,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       CustomTextButton(
                         labelText: Strings.loginButton,
-                        onPressed: signUpController.goToLogin,
+                        onPressed: signUpController.navigateToLogin,
                       )
                     ],
                   ),
@@ -69,7 +65,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           label: Strings.nameField,
                           iconData: IconlyLight.profile,
                           controller: signUpController.nameController,
-                          validator: NameType.hasError,
+                          validator: (value) {
+                            return null;
+                          },
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
@@ -77,7 +75,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           iconData: IconlyLight.message,
                           controller: signUpController.emailController,
                           keyboardType: TextInputType.emailAddress,
-                          validator: EmailType.hasError,
+                          validator: (value) {
+                            return null;
+                          },
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
@@ -85,7 +85,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           controller: signUpController.passwordController,
-                          validator: PasswordType.hasError,
+                          validator: (value) {
+                            return null;
+                          },
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
@@ -93,10 +95,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           controller: signUpController.confirmPasswordController,
-                          validator: (confirmPassword) => ConfirmPasswordType.hasError(
-                            signUpController.passwordController.text,
-                            confirmPassword,
-                          ),
+                          validator: (value) {
+                            return null;
+                          },
                         ),
                       ],
                     ),
@@ -105,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: EdgeInsets.only(top: size.height * 0.6),
                     child: CustomElevatedButton(
                       textButton: Strings.signUpButton,
-                      onPressed: signUpController.goToProfile,
+                      onPressed: signUpController.pushToProfile,
                     ),
                   ),
                 ],

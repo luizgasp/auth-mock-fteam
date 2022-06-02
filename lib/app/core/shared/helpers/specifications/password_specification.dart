@@ -1,4 +1,4 @@
-import 'package:auth_mock_3/app/core/shared/helpers/specifications/string_specification.dart';
+import 'string_specification.dart';
 
 class PasswordSpecification {
   static bool isSatisfiedBy(String? password) {

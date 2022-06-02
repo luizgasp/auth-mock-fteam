@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../domain/dtos/signup_dto.dart';
-import '../../domain/useCases/signup/i_signup_usecase.dart';
+import '../../../../../../core/shared/services/auth/dtos/signup_with_email_dto.dart';
+import '../stores/signup_store.dart';
 
 //
 class SignUpController {
-  final ISignUpUsecase signUpUseCase;
+  final SignUpStore _signUpStore;
 
-  SignUpController(this.signUpUseCase);
+  SignUpController(SignUpStore signUpStore) : _signUpStore = signUpStore;
 
   final formKey = GlobalKey<FormState>();
 
@@ -17,8 +17,9 @@ class SignUpController {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  void goToLogin() => Modular.to.navigate('/auth/login/');
-  void goToProfile() => Modular.to.pushNamed("/auth/sign/profile");
+  void navigateToLogin() => Modular.to.navigate('/auth/login/');
+  void pushToProfile() => Modular.to.pushNamed("/auth/sign/profile");
+  void navigateToHome() => Modular.to.navigate('/home/');
 
   Future<void> handleSignUpWithEmail() async {
     final params = SignUpWithEmailDTO(
@@ -26,10 +27,8 @@ class SignUpController {
       password: passwordController.text,
     );
 
-    await signUpUseCase.signUpWithEmail(params);
+    await _signUpStore.signUpWithEmail(params);
 
-    final currentUser = signUpUseCase.getCurrentUser();
-
-    return currentUser != null ? Modular.to.navigate('/home/') : null;
+    return _signUpStore.state ? navigateToHome() : null;
   }
 }

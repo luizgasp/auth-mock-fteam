@@ -1,11 +1,11 @@
-import 'package:auth_mock_3/app/core/shared/helpers/value_objects/email_type.dart';
-import 'package:auth_mock_3/app/core/shared/helpers/value_objects/password_type.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/login/presenter/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../../../core/constants/strings.dart';
+import '../../../../../../core/shared/helpers/value_objects/email.dart';
+import '../../../../../../core/shared/helpers/value_objects/password.dart';
+import '../controllers/login_controller.dart';
 import 'widgets/custom_container.dart';
 import 'widgets/custom_elevated_button.dart';
 import 'widgets/custom_text_button.dart';
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                           label: Strings.emailField,
                           iconData: IconlyLight.message,
                           controller: loginController.emailController,
-                          validator: EmailType.hasError,
+                          validator: Email.hasError,
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           controller: loginController.passwordController,
-                          validator: PasswordType.hasError,
+                          validator: Password.hasError,
                         ),
                       ],
                     ),

@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconly/iconly.dart';
-
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/domain/entities/country_entity.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/blocs/country_api/country_bloc.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/controllers/profile_controller.dart';
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/presenter/ui/widgets/custom_title_subtitle.dart';
 
 import '../../../../../../../core/constants/strings.dart';
 import '../../../../login/presenter/ui/widgets/custom_container.dart';
 import '../../../../login/presenter/ui/widgets/custom_textfield_and_label.dart';
+import '../../controllers/profile_controller.dart';
 import '../../controllers/signup_controller.dart';
+import '../widgets/custom_title_subtitle.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -24,14 +19,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final signUpController = Modular.get<SignUpController>();
   final profileController = Modular.get<ProfileController>();
-
-  final countryBloc = Modular.get<CountryBloc>();
-
-  @override
-  void initState() {
-    super.initState();
-    countryBloc.add(FetchCountriesEvent());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,43 +56,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       ],
                     ),
                   ),
-                  BlocBuilder<CountryBloc, CountryState>(
-                    bloc: countryBloc,
-                    builder: (_, state) {
-                      if (state is CountryLoadingState) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (state is CountryLoadedState) {
-                        final countries = state.countries;
-
-                        return DropdownButton<CountryEntity>(
-                          hint: Text(Strings.profileCountryTitle),
-                          value: countries[0],
-                          onChanged: (country) {},
-                          items: countries
-                              .map(
-                                (country) => DropdownMenuItem(
-                                  value: country,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        width: 100,
-                                        height: 100,
-                                        child: SvgPicture.network(country.countryImage),
-                                      ),
-                                      Text(country.name),
-                                    ],
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                          isDense: true,
-                        );
-                      } else {
-                        return const Center(child: Text('ERROR'));
-                      }
-                    },
-                  )
                 ],
               ),
             ),

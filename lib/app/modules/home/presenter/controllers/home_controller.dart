@@ -1,15 +1,13 @@
-import 'package:flutter_modular/flutter_modular.dart';
-
-import '../../../auth/submodules/login/domain/useCases/i_login_usecase.dart';
+import '../../../../core/shared/services/auth/i_auth_service.dart';
 
 class HomeController {
-  final ILoginUsecase loginUsecase;
+  final IAuthService _authService;
 
-  HomeController(this.loginUsecase);
+  const HomeController(IAuthService authService) : _authService = authService;
 
   Future<void> handleLogout() async {
-    await loginUsecase.logout();
+    // await _authService.logout();
 
-    Modular.to.navigate('/auth/login/');
+    // Modular.to.navigate('/auth/login/');
   }
 }

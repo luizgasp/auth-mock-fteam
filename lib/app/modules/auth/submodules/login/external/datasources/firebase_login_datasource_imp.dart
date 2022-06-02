@@ -1,35 +1,17 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
-import '../../../../../../core/shared/exceptions/auth_exception.dart';
-import '../../domain/dtos/login_params_dto.dart';
+import '../../../../../../core/shared/services/auth/dtos/login_with_email_dto.dart';
+import '../../../../../../core/shared/services/auth/i_auth_service.dart';
 import '../../infra/datasources/i_login_datasource.dart';
 
 class FirebaseLoginDatasourceImp implements ILoginDatasource {
-  final FirebaseAuth _auth;
+  final IAuthService _authService;
 
-  FirebaseLoginDatasourceImp(FirebaseAuth auth) : _auth = auth;
+  const FirebaseLoginDatasourceImp(IAuthService authService) : _authService = authService;
 
   @override
   Future<void> loginWithEmail(LoginWithEmailDTO params) async {
-    try {
-      await _auth.signInWithEmailAndPassword(email: params.email, password: params.password);
-    } on FirebaseAuthException catch (e, stackTrace) {
-      switch (e.code) {
-        case 'invalid-email':
-          throw AuthException(message: 'Invalid e-mail', stackTrace: stackTrace);
-        case 'user-not-found':
-          throw AuthException(message: 'User not found', stackTrace: stackTrace);
-        case 'wrong-password':
-          throw AuthException(message: 'Wrong password, please try again', stackTrace: stackTrace);
-        default:
-          throw AuthException(message: 'Login error', stackTrace: stackTrace);
-      }
-    }
+    return await _authService.loginWithEmail(params);
   }
 
   @override
-  Future<void> logout() async => await _auth.signOut();
-
-  @override
-  User? getCurrentUser() => _auth.currentUser;
+  UserEntityService? getCurrentUser() => _authService.getCurrentUser();
 }

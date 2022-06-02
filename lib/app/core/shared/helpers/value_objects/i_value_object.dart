@@ -1,4 +1,4 @@
-abstract class IObjectValue {
+abstract class IValueObject {
   bool get isValid;
 
   String? hasError();

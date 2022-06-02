@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../../../../core/shared/exceptions/i_app_exception.dart';
+import '../../../../../../core/shared/services/auth/dtos/login_with_email_dto.dart';
+import '../../../../../../core/shared/services/auth/i_auth_service.dart';
 import '../../../../../../core/shared/services/overlay/i_overlay_service.dart';
 import '../../../../../../core/utils/either.dart';
-import '../dtos/login_params_dto.dart';
 import '../repositories/i_login_repository.dart';
 import 'i_login_usecase.dart';
 
@@ -19,10 +18,5 @@ class LoginUsecase implements ILoginUsecase {
   }
 
   @override
-  Future<Either<IAppException, Unit>> logout() async {
-    return await loginRepository.logout();
-  }
-
-  @override
-  User? getCurrentUser() => loginRepository.getCurrentUser();
+  UserEntityService? getCurrentUser() => loginRepository.getCurrentUser();
 }

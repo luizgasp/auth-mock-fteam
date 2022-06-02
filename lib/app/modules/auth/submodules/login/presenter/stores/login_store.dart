@@ -1,8 +1,8 @@
 import 'package:flutter_triple/flutter_triple.dart';
 
 import '../../../../../../core/shared/exceptions/i_app_exception.dart';
+import '../../../../../../core/shared/services/auth/dtos/login_with_email_dto.dart';
 import '../../../../../../core/shared/services/overlay/i_overlay_service.dart';
-import '../../domain/dtos/login_params_dto.dart';
 import '../../domain/useCases/i_login_usecase.dart';
 
 class LoginStore extends StreamStore<IAppException, bool> {
@@ -17,11 +17,11 @@ class LoginStore extends StreamStore<IAppException, bool> {
     final response = await _loginUsecase.loginWithEmail(params);
 
     response.fold(
-      (l) {
-        setError(l);
-        _overlayService.showSnackBar(l.message);
+      (left) {
+        setError(left);
+        _overlayService.showSnackBar(left.message);
       },
-      (r) => true,
+      (right) => update(true),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:auth_mock_3/app/modules/auth/submodules/signup/infra/datasources/i_country_datasource.dart';
 import 'package:flutter/services.dart';
+import '../../infra/datasources/i_country_datasource.dart';
 
 class CountryDatasourceImp implements ICountryDatasource {
-  CountryDatasourceImp();
+  const CountryDatasourceImp();
 
   @override
   Future<List> call() async {
