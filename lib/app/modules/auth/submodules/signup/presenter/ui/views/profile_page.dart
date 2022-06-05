@@ -20,6 +20,14 @@ class _ProfilePageState extends State<ProfilePage> {
   final signUpController = Modular.get<SignUpController>();
   final profileController = Modular.get<ProfileController>();
 
+  final nameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = signUpController.name;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,9 +53,34 @@ class _ProfilePageState extends State<ProfilePage> {
                         CustomTextFieldAndLabel(
                           label: Strings.nameField,
                           iconData: IconlyLight.profile,
+                          controller: nameController,
                           onChanged: (value) => signUpController.name = value,
                           validator: (value) => signUpController.nameInstance.hasError(),
                         ),
+                        // DropdownButton<CountryEntity>(
+                        //   hint: Text(Strings.profileCountryTitle),
+                        //   value: countries,
+                        //   onChanged: (country) {},
+                        //   items: countries
+                        //       .map(
+                        //         (country) => DropdownMenuItem(
+                        //           value: country,
+                        //           child: Row(
+                        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //             children: [
+                        //               SizedBox(
+                        //                 width: 100,
+                        //                 height: 100,
+                        //                 child: SvgPicture.network(country.countryImage),
+                        //               ),
+                        //               Text(country.name),
+                        //             ],
+                        //           ),
+                        //         ),
+                        //       )
+                        //       .toList(),
+                        //   isDense: true,
+                        // );
                       ],
                     ),
                   ),

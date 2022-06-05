@@ -23,15 +23,5 @@ class LoginRepositoryImp implements ILoginRepository {
   }
 
   @override
-  Future<Either<IAppException, Unit>> logout() async {
-    try {
-      await loginDatasource.logout();
-      return right(unit);
-    } on AuthException catch (error) {
-      return left(error);
-    }
-  }
-
-  @override
   UserEntityService? getCurrentUser() => loginDatasource.getCurrentUser();
 }

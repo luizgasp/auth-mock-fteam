@@ -1,3 +1,6 @@
+import 'package:auth_mock_3/app/core/shared/exceptions/i_app_exception.dart';
+
+import '../../../../../../../core/utils/either.dart';
 import '../../entities/country_entity.dart';
 import '../../repositories/i_country_repository.dart';
 import 'i_country_usecase.dart';
@@ -7,9 +10,8 @@ class CountryUsecaseImp implements ICountryUsecase {
 
   CountryUsecaseImp(this.countryRepository);
 
-// TODO - Implementar o Either
   @override
-  Future<List<CountryEntity>> getCountries() async {
+  Future<Either<IAppException, List<CountryEntity>>> getCountries() async {
     return await countryRepository.getCountries();
   }
 }

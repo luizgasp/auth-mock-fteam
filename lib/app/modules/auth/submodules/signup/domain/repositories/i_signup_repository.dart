@@ -3,6 +3,7 @@ import '../../../../../../core/shared/services/auth/dtos/signup_with_email_dto.d
 import '../../../../../../core/shared/services/auth/i_auth_service.dart';
 import '../../../../../../core/utils/either.dart';
 
+// interface
 abstract class ISignUpRepository {
   Future<Either<IAppException, Unit>> signUpWithEmail(SignUpWithEmailDTO params);
   UserEntityService? getCurrentUser();

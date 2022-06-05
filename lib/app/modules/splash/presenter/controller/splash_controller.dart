@@ -1,5 +1,6 @@
-import 'package:auth_mock_3/app/core/shared/services/auth/i_auth_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../../../core/shared/services/auth/i_auth_service.dart';
 
 class SplashController {
   final IAuthService _authService;

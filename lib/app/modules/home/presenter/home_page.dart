@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(height: size.height * 0.04),
               ListView.builder(
-                itemCount: 10,
+                itemCount: 7,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {

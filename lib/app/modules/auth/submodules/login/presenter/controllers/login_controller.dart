@@ -18,17 +18,15 @@ class LoginController {
 
   // Fields
   Email emailInstace = Email();
-  String get email => emailInstace.value;
   set email(String newValue) => emailInstace.value = newValue;
 
   Password passwordInstace = Password();
-  String get password => passwordInstace.value;
   set password(String newValue) => passwordInstace.value = newValue;
 
   Future<void> handleLoginWithEmail() async {
     final params = LoginWithEmailDTO(
-      email: email,
-      password: password,
+      email: emailInstace.value,
+      password: passwordInstace.value,
     );
 
     await loginStore.loginWithEmail(params);

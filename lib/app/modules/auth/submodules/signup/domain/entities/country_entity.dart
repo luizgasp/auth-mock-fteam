@@ -1,5 +1,7 @@
+import 'package:auth_mock_3/app/core/shared/helpers/value_objects/name.dart';
+
 class CountryEntity {
-  final String name;
+  final Name name;
   final String countryImage;
 
   CountryEntity({

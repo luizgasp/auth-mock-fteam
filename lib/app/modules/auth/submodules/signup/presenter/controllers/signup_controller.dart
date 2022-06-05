@@ -25,24 +25,21 @@ class SignUpController {
   set name(String newValue) => nameInstance.value = newValue;
 
   Email emailInstace = Email();
-  String get email => emailInstace.value;
   set email(String newValue) => emailInstace.value = newValue;
 
   Password passwordInstace = Password();
-  String get password => passwordInstace.value;
   set password(String newValue) {
     passwordInstace.value = newValue;
     confirmPasswordInstace.password = newValue;
   }
 
   ConfirmPassword confirmPasswordInstace = ConfirmPassword();
-  String get confirmPassword => confirmPasswordInstace.confirmPassword;
   set confirmPassword(String newValue) => confirmPasswordInstace.confirmPassword = newValue;
 
   Future<void> handleSignUpWithEmail() async {
     final params = SignUpWithEmailDTO(
-      email: email,
-      password: password,
+      email: emailInstace.value,
+      password: passwordInstace.value,
     );
 
     await _signUpStore.signUpWithEmail(params);

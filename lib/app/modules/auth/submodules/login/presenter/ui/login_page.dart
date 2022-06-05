@@ -28,15 +28,18 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            CustomPainelTextWithButton(
-              title: Strings.loginTitle,
-              subtitle: Strings.loginSubtitle,
-              buttonLabel: Strings.signUpButton,
-              onPressed: loginController.navigatoToSignUp,
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.1),
+              child: CustomPainelTextWithButton(
+                title: Strings.loginTitle,
+                subtitle: Strings.loginSubtitle,
+                buttonLabel: Strings.signUpButton,
+                onPressed: loginController.navigatoToSignUp,
+              ),
             ),
             CustomContainer(
-              paddingTop: size.height * 0.45,
-              height: size.height * 0.55,
+              paddingTop: size.height * 0.4,
+              height: size.height * 0.6,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                           label: Strings.emailField,
                           iconData: IconlyLight.message,
                           onChanged: (value) => loginController.email = value,
-                          validator: (value) => loginController.emailInstace.hasError(),
+                          validator: (_) => loginController.emailInstace.hasError(),
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
@@ -58,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           onChanged: (value) => loginController.password = value,
-                          validator: (value) => loginController.passwordInstace.hasError(),
+                          validator: (_) => loginController.passwordInstace.hasError(),
                         ),
                       ],
                     ),

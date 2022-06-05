@@ -13,8 +13,5 @@ class FirebaseLoginDatasourceImp implements ILoginDatasource {
   }
 
   @override
-  Future<void> logout() async => await _authService.logout();
-
-  @override
   UserEntityService? getCurrentUser() => _authService.getCurrentUser();
 }
