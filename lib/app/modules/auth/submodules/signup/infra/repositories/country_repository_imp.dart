@@ -1,7 +1,8 @@
 // ignore_for_file: unnecessary_lambdas
 
-import 'package:auth_mock_3/app/core/shared/exceptions/country_api_exception.dart';
+import 'dart:convert';
 
+import '../../../../../../core/shared/exceptions/country_api_exception.dart';
 import '../../../../../../core/shared/exceptions/i_app_exception.dart';
 import '../../../../../../core/utils/either.dart';
 import '../../domain/entities/country_entity.dart';
@@ -17,9 +18,13 @@ class CountryRepositoryImp implements ICountryRepository {
   @override
   Future<Either<IAppException, List<CountryEntity>>> getCountries() async {
     try {
-      final listData = await countryDatasource.getCountries();
+      final stringData = await countryDatasource.getCountries();
 
-      final countryList = listData.map((country) => CountryMapper.fromMap(country)).toList();
+      final data = jsonDecode(stringData);
+
+      final dataCountries = data['countries'] as List;
+
+      final countryList = dataCountries.map((country) => CountryMapper.fromMap(country)).toList();
 
       return right(countryList);
     } on CountryApiException catch (error) {

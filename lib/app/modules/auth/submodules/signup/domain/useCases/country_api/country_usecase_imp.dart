@@ -1,5 +1,4 @@
-import 'package:auth_mock_3/app/core/shared/exceptions/i_app_exception.dart';
-
+import '../../../../../../../core/shared/exceptions/i_app_exception.dart';
 import '../../../../../../../core/utils/either.dart';
 import '../../entities/country_entity.dart';
 import '../../repositories/i_country_repository.dart';

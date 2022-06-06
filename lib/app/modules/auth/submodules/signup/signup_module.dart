@@ -8,6 +8,7 @@ import 'infra/repositories/country_repository_imp.dart';
 import 'infra/repositories/signup_repository_imp.dart';
 import 'presenter/controllers/profile_controller.dart';
 import 'presenter/controllers/signup_controller.dart';
+import 'presenter/stores/country_store.dart';
 import 'presenter/stores/signup_store.dart';
 import 'presenter/ui/views/profile_page.dart';
 import 'presenter/ui/views/signup_page.dart';
@@ -25,14 +26,23 @@ class SignUpModule extends Module {
         Bind.factory((i) => const CountryDatasourceImp()),
         Bind.factory((i) => CountryRepositoryImp(i())),
         Bind.factory((i) => CountryUsecaseImp(i())),
+        Bind.singleton((i) => CountryStore(i(), i())),
 
         //Profile
-        Bind.singleton((i) => ProfileController()),
+        Bind.singleton((i) => ProfileController(i())),
       ];
 
   @override
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute, child: (_, __) => const SignUpPage()),
-        ChildRoute('/profile', child: (_, __) => const ProfilePage()),
+        //
+        ChildRoute(
+          '/profile/:name',
+          child: (context, args) => ProfilePage(
+            countryStore: context.read<CountryStore>(),
+            profileController: context.read<ProfileController>(),
+            previewName: args.data,
+          ),
+        ),
       ];
 }

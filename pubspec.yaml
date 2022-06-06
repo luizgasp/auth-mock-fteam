@@ -14,11 +14,11 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   flutter_modular: ^5.0.2
+  flutter_triple: ^1.2.7+2
   firebase_core: ^1.17.0
   firebase_auth: ^3.3.10
-  flutter_triple: ^1.2.7+2
-  asuka: ^2.0.0+1
   string_validator: ^0.3.0
+  asuka: ^2.0.0+1
   iconly: ^1.0.1
   flutter_svg: ^1.1.0
   

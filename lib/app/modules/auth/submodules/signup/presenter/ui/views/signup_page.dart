@@ -45,7 +45,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           label: Strings.nameField,
                           iconData: IconlyLight.profile,
                           onChanged: (value) => signUpController.name = value,
-                          validator: (value) => signUpController.nameInstance.hasError(),
+                          validator: (_) => signUpController.nameInstance.hasError(),
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
@@ -53,7 +53,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           iconData: IconlyLight.message,
                           keyboardType: TextInputType.emailAddress,
                           onChanged: (value) => signUpController.email = value,
-                          validator: (value) => signUpController.emailInstace.hasError(),
+                          validator: (_) => signUpController.emailInstace.hasError(),
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
@@ -61,7 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           onChanged: (value) => signUpController.password = value,
-                          validator: (value) => signUpController.passwordInstace.hasError(),
+                          validator: (_) => signUpController.passwordInstace.hasError(),
                         ),
                         SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           onChanged: (value) => signUpController.confirmPassword = value,
-                          validator: (value) => signUpController.confirmPasswordInstace.hasError(),
+                          validator: (_) => signUpController.confirmPasswordInstace.hasError(),
                         ),
                       ],
                     ),

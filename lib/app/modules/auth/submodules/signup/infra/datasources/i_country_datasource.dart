@@ -1,3 +1,3 @@
 abstract class ICountryDatasource {
-  Future<List> getCountries();
+  Future<String> getCountries();
 }

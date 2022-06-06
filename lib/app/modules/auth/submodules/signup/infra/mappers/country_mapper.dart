@@ -1,5 +1,6 @@
-import 'package:auth_mock_3/app/core/shared/exceptions/country_api_exception.dart';
-import 'package:auth_mock_3/app/core/shared/helpers/value_objects/name.dart';
+import '../../../../../../core/shared/exceptions/country_api_exception.dart';
+import '../../../../../../core/shared/exceptions/i_app_exception.dart';
+import '../../../../../../core/shared/helpers/value_objects/name.dart';
 
 import '../../domain/entities/country_entity.dart';
 
@@ -15,7 +16,7 @@ class CountryMapper extends CountryEntity {
         name: Name(map['name']),
         countryImage: map['image'],
       );
-    } catch (error, stackTrace) {
+    } on IAppException catch (error, stackTrace) {
       throw CountryApiException(message: 'Mapper Country Error', stackTrace: stackTrace);
     }
   }

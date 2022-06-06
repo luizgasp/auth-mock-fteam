@@ -41,7 +41,6 @@ class _LoginPageState extends State<LoginPage> {
               paddingTop: size.height * 0.4,
               height: size.height * 0.6,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Form(
@@ -66,7 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: size.height * 0.1),
+                  // SizedBox(height: size.height * 0.1),
+                  const Spacer(),
                   CustomElevatedButton(
                     textButton: Strings.loginButton,
                     onPressed: () {
@@ -75,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     },
                   ),
+                  SizedBox(height: size.height * 0.05),
                 ],
               ),
             ),

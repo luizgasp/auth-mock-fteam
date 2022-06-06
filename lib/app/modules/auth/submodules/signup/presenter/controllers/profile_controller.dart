@@ -1,11 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../domain/entities/country_entity.dart';
+import '../stores/country_store.dart';
 
 class ProfileController {
-  final profileKey = GlobalKey<FormState>();
+  final CountryStore countryStore;
 
-  CountryEntity? _selectedCountry;
+  ProfileController(this.countryStore);
 
-  CountryEntity? get country => _selectedCountry;
+  final nameController = TextEditingController();
+
+  CountryEntity? get country => countryStore.currentCountry;
+  set country(CountryEntity? country) => countryStore.currentCountry = country;
 }
