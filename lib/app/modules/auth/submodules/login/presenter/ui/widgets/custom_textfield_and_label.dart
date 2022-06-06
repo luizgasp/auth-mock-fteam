@@ -78,6 +78,7 @@ class _CustomTextFieldAndLabelState extends State<CustomTextFieldAndLabel> {
           onChanged: widget.onChanged,
           validator: widget.validator,
         ),
+        SizedBox(height: size.height * 0.015),
       ],
     );
   }

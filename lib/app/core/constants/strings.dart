@@ -10,9 +10,6 @@ class Strings {
   static String rgField = 'RG';
   static String phoneField = 'Phone';
 
-  // Profile's TextField
-  static String profileNameField = 'Display Name';
-
   // Login
   static String loginTitle = "👋 Hey, \nIt's nice to see you again!";
   static String loginSubtitle = "if you don't have an account /";
@@ -27,6 +24,8 @@ class Strings {
   static String profileTitle = '😎 Setting up your\nprofile';
   static String profileSubtitle = 'Add your profile photo';
   static String profileCountryTitle = 'Select your country';
+  static String profileNameField = 'Display Name';
+  static String confirmButtonLabel = 'Confirm';
 
   static String defaultErrorMessage = 'Something has happened';
 

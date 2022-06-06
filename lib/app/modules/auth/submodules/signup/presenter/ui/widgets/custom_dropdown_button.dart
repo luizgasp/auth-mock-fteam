@@ -6,11 +6,13 @@ import 'package:flutter_svg/svg.dart';
 import '../../../domain/entities/country_entity.dart';
 
 class CustomDropdownButton extends StatefulWidget {
+  final String label;
   final List<CountryEntity> countries;
   CountryEntity currentCountry;
 
   CustomDropdownButton({
     Key? key,
+    required this.label,
     required this.countries,
     required this.currentCountry,
   }) : super(key: key);
@@ -24,34 +26,40 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return DropdownButtonFormField<CountryEntity>(
-      isExpanded: true,
-      value: widget.currentCountry,
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      onChanged: (newValue) {
-        setState(() {
-          widget.currentCountry = newValue!;
-        });
-      },
-      items: widget.countries.map((value) {
-        return DropdownMenuItem<CountryEntity>(
-          value: value,
-          child: Row(
-            children: [
-              SizedBox(
-                width: size.width * 0.1,
-                child: SvgPicture.network(value.countryImage, fit: BoxFit.cover),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(widget.label),
+        SizedBox(height: size.height * 0.015),
+        DropdownButtonFormField<CountryEntity>(
+          isExpanded: true,
+          value: widget.currentCountry,
+          elevation: 16,
+          onChanged: (newValue) {
+            setState(() => widget.currentCountry = newValue!);
+          },
+          items: widget.countries.map((value) {
+            return DropdownMenuItem<CountryEntity>(
+              value: value,
+              child: Row(
+                children: [
+                  // TODO - Arrumar tamanho da bandeira do país
+                  SizedBox(
+                    width: size.width * 0.12,
+                    child: SvgPicture.network(value.countryImage),
+                  ),
+                  SizedBox(width: size.width * 0.03),
+                  Text(
+                    value.name.value,
+                    style: Theme.of(context).textTheme.headline5,
+                  )
+                ],
               ),
-              SizedBox(width: size.width * 0.05),
-              Text(
-                value.name.value,
-                style: Theme.of(context).textTheme.headline5,
-              )
-            ],
-          ),
-        );
-      }).toList(),
+            );
+          }).toList(),
+        ),
+        SizedBox(height: size.height * 0.015),
+      ],
     );
   }
 }

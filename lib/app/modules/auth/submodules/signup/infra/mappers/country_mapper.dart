@@ -17,7 +17,7 @@ class CountryMapper extends CountryEntity {
         countryImage: map['image'],
       );
     } on IAppException catch (error, stackTrace) {
-      throw CountryApiException(message: 'Mapper Country Error', stackTrace: stackTrace);
+      throw CountryApiException(message: 'Country Mapper Error', stackTrace: stackTrace);
     }
   }
 }

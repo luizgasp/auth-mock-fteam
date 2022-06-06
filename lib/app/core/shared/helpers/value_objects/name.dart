@@ -9,8 +9,9 @@ class Name implements IValueObject {
   @override
   bool get isValid => NameSpecification.isSatisfiedBy(value);
 
+  @override
   String errorMessage = 'Invalid name';
 
   @override
-  String? hasError() => !isValid ? errorMessage : null;
+  String? hasError() => isValid ? null : errorMessage;
 }

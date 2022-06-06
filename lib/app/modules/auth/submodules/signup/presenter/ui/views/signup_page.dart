@@ -47,29 +47,26 @@ class _SignUpPageState extends State<SignUpPage> {
                           onChanged: (value) => signUpController.name = value,
                           validator: (_) => signUpController.nameInstance.hasError(),
                         ),
-                        SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: Strings.emailField,
                           iconData: IconlyLight.message,
                           keyboardType: TextInputType.emailAddress,
                           onChanged: (value) => signUpController.email = value,
-                          validator: (_) => signUpController.emailInstace.hasError(),
+                          validator: (_) => signUpController.emailInstance.hasError(),
                         ),
-                        SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: Strings.passwordField,
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           onChanged: (value) => signUpController.password = value,
-                          validator: (_) => signUpController.passwordInstace.hasError(),
+                          validator: (_) => signUpController.passwordInstance.hasError(),
                         ),
-                        SizedBox(height: size.height * 0.015),
                         CustomTextFieldAndLabel(
                           label: Strings.confirmPasswordField,
                           iconData: IconlyLight.lock,
                           passwordTile: true,
                           onChanged: (value) => signUpController.confirmPassword = value,
-                          validator: (_) => signUpController.confirmPasswordInstace.hasError(),
+                          validator: (_) => signUpController.confirmPasswordInstance.hasError(),
                         ),
                       ],
                     ),
@@ -78,7 +75,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: EdgeInsets.only(top: size.height * 0.6),
                     child: CustomElevatedButton(
                       textButton: Strings.signUpButton,
-                      onPressed: signUpController.pushToProfile,
+                      onPressed: () {
+                        if (signUpController.formKey.currentState!.validate()) {
+                          signUpController.pushToProfile();
+                        }
+                      },
                     ),
                   ),
                 ],

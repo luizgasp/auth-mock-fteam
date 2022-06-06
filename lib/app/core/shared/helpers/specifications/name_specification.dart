@@ -1,3 +1,5 @@
+import 'string_specification.dart';
+
 class NameSpecification {
-  static bool isSatisfiedBy(String? name) => name != null || name!.isNotEmpty;
+  static bool isSatisfiedBy(String? name) => StringSpecification.isSatisfiedBy(name);
 }

@@ -7,6 +7,7 @@ import 'package:iconly/iconly.dart';
 
 import '../../../../../../../core/constants/strings.dart';
 import '../../../../login/presenter/ui/widgets/custom_container.dart';
+import '../../../../login/presenter/ui/widgets/custom_elevated_button.dart';
 import '../../../../login/presenter/ui/widgets/custom_textfield_and_label.dart';
 import '../../../domain/entities/country_entity.dart';
 import '../../controllers/profile_controller.dart';
@@ -43,6 +44,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
@@ -50,14 +53,14 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Theme.of(context).backgroundColor,
         iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomTitleSubtitile(
-              title: Strings.profileTitle,
-              subtitle: Strings.profileSubtitle,
-            ),
-            CustomContainer(
+      body: Stack(
+        children: [
+          CustomTitleSubtitile(
+            title: Strings.profileTitle,
+            subtitle: Strings.profileSubtitle,
+          ),
+          CustomContainer(
+            child: SingleChildScrollView(
               child: Stack(
                 children: [
                   Form(
@@ -76,19 +79,44 @@ class _ProfilePageState extends State<ProfilePage> {
                           onError: (_, state) => Center(child: Text(Strings.defaultErrorMessage)),
                           onState: (_, List<CountryEntity> state) => Center(
                             child: CustomDropdownButton(
+                              label: Strings.countryField,
                               countries: state,
                               currentCountry: widget.countryStore.currentCountry!,
                             ),
                           ),
                         ),
+                        CustomTextFieldAndLabel(
+                          label: Strings.cpfField,
+                          iconData: IconlyLight.activity,
+                          onChanged: (value) => widget.profileController.cpf = value,
+                          validator: (_) => widget.profileController.cpfInstance.hasError(),
+                        ),
+                        CustomTextFieldAndLabel(
+                          label: Strings.rgField,
+                          iconData: IconlyLight.activity,
+                          onChanged: (value) => widget.profileController.rg = value,
+                          validator: (_) => widget.profileController.rgInstance.hasError(),
+                        ),
+                        CustomTextFieldAndLabel(
+                          label: Strings.phoneField,
+                          iconData: IconlyLight.activity,
+                          onChanged: (value) => widget.profileController.phone = value,
+                          validator: (_) => widget.profileController.phoneInstance.hasError(),
+                        ),
+                        SizedBox(height: size.height * 0.06),
+                        CustomElevatedButton(
+                          textButton: Strings.confirmButtonLabel,
+                          onPressed: () {},
+                        ),
+                        SizedBox(height: size.height * 0.04),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

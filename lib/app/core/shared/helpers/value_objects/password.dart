@@ -9,8 +9,9 @@ class Password implements IValueObject {
   @override
   bool get isValid => PasswordSpecification.isSatisfiedBy(value);
 
+  @override
   String errorMessage = 'Invalid password';
 
   @override
-  String? hasError() => !isValid ? errorMessage : null;
+  String? hasError() => isValid ? null : errorMessage;
 }

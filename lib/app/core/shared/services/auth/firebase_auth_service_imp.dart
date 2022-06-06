@@ -5,7 +5,6 @@ import 'dtos/login_with_email_dto.dart';
 import 'dtos/signup_with_email_dto.dart';
 import 'i_auth_service.dart';
 
-// TODO - Implement logou functionality
 class FirebaseAuthServiceImp implements IAuthService {
   final FirebaseAuth _auth;
 
