@@ -3,7 +3,7 @@ import 'package:flutter_triple/flutter_triple.dart';
 import '../../../../../../core/shared/exceptions/i_app_exception.dart';
 import '../../../../../../core/shared/services/auth/dtos/signup_with_email_dto.dart';
 import '../../../../../../core/shared/services/overlay/i_overlay_service.dart';
-import '../../domain/useCases/signup/i_signup_usecase.dart';
+import '../../domain/usecases/signup/i_signup_usecase.dart';
 
 class SignUpStore extends StreamStore<IAppException, bool> {
   final ISignUpUsecase _signUpUsecase;

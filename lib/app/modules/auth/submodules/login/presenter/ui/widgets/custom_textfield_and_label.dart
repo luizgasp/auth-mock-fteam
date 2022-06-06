@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iconly/iconly.dart';
 
 class CustomTextFieldAndLabel extends StatefulWidget {
   final String label;
   final IconData iconData;
+  final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final bool passwordTile;
   final TextEditingController? controller;
-  final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final List<TextInputFormatter>? inputFormatters;
+  final int? maxLength;
 
   const CustomTextFieldAndLabel({
     Key? key,
     required this.label,
     required this.iconData,
+    required this.validator,
     this.keyboardType,
     this.passwordTile = false,
     this.controller,
-    required this.validator,
     this.onChanged,
+    this.inputFormatters,
+    this.maxLength,
   }) : super(key: key);
 
   @override
@@ -44,10 +49,8 @@ class _CustomTextFieldAndLabelState extends State<CustomTextFieldAndLabel> {
         Text(widget.label),
         SizedBox(height: size.height * 0.015),
         TextFormField(
-          keyboardType: widget.keyboardType,
-          controller: widget.controller,
-          obscureText: obscureText,
           style: Theme.of(context).textTheme.headline5,
+          obscureText: obscureText,
           decoration: InputDecoration(
             prefixIcon: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -77,6 +80,10 @@ class _CustomTextFieldAndLabelState extends State<CustomTextFieldAndLabel> {
           ),
           onChanged: widget.onChanged,
           validator: widget.validator,
+          controller: widget.controller,
+          keyboardType: widget.keyboardType,
+          inputFormatters: widget.inputFormatters,
+          maxLength: widget.maxLength,
         ),
         SizedBox(height: size.height * 0.015),
       ],

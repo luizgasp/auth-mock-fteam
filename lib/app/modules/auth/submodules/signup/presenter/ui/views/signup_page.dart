@@ -3,11 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../../../../core/constants/strings.dart';
-import '../../../../login/presenter/ui/widgets/custom_container.dart';
-import '../../../../login/presenter/ui/widgets/custom_elevated_button.dart';
-import '../../../../login/presenter/ui/widgets/custom_textfield_and_label.dart';
+import '../../../../login/presenter/ui/widgets/login_widgets.dart';
 import '../../controllers/signup_controller.dart';
-import '../widgets/custom_panel_text_with_button.dart';
+import '../widgets/signup_widgets.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);

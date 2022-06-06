@@ -5,9 +5,7 @@ import 'package:iconly/iconly.dart';
 import '../../../../../../core/constants/strings.dart';
 import '../../../signup/presenter/ui/widgets/custom_panel_text_with_button.dart';
 import '../controllers/login_controller.dart';
-import 'widgets/custom_container.dart';
-import 'widgets/custom_elevated_button.dart';
-import 'widgets/custom_textfield_and_label.dart';
+import 'widgets/login_widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

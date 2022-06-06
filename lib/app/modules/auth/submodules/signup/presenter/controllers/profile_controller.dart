@@ -12,6 +12,7 @@ class ProfileController {
   ProfileController(this.countryStore);
 
   final nameController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   CountryEntity? get country => countryStore.currentCountry;
   set country(CountryEntity? country) => countryStore.currentCountry = country;

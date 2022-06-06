@@ -1,20 +1,21 @@
 // ignore_for_file: avoid_types_on_closure_parameters
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../../../../core/constants/strings.dart';
-import '../../../../login/presenter/ui/widgets/custom_container.dart';
-import '../../../../login/presenter/ui/widgets/custom_elevated_button.dart';
-import '../../../../login/presenter/ui/widgets/custom_textfield_and_label.dart';
+import '../../../../login/presenter/ui/widgets/login_widgets.dart';
 import '../../../domain/entities/country_entity.dart';
 import '../../controllers/profile_controller.dart';
 import '../../controllers/signup_controller.dart';
 import '../../stores/country_store.dart';
-import '../widgets/custom_dropdown_button.dart';
-import '../widgets/custom_title_subtitle.dart';
+import '../utils/cpf_input_formatter.dart';
+import '../utils/phone_input_formatter.dart';
+import '../utils/rg_input_formatter.dart';
+import '../widgets/signup_widgets.dart';
 
 class ProfilePage extends StatefulWidget {
   final CountryStore countryStore;
@@ -45,6 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final formKey = widget.profileController.formKey;
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -60,10 +62,13 @@ class _ProfilePageState extends State<ProfilePage> {
             subtitle: Strings.profileSubtitle,
           ),
           CustomContainer(
+            paddingTop: size.height * 0.2,
             child: SingleChildScrollView(
-              child: Stack(
+              child: Column(
                 children: [
+                  const CustomProfilePhoto(),
                   Form(
+                    key: formKey,
                     child: Column(
                       children: [
                         CustomTextFieldAndLabel(
@@ -90,23 +95,42 @@ class _ProfilePageState extends State<ProfilePage> {
                           iconData: IconlyLight.activity,
                           onChanged: (value) => widget.profileController.cpf = value,
                           validator: (_) => widget.profileController.cpfInstance.hasError(),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CpfInputFormatter(),
+                            LengthLimitingTextInputFormatter(14)
+                          ],
                         ),
                         CustomTextFieldAndLabel(
                           label: Strings.rgField,
                           iconData: IconlyLight.activity,
                           onChanged: (value) => widget.profileController.rg = value,
                           validator: (_) => widget.profileController.rgInstance.hasError(),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            RgInputFormatter(),
+                            LengthLimitingTextInputFormatter(12),
+                          ],
                         ),
                         CustomTextFieldAndLabel(
                           label: Strings.phoneField,
                           iconData: IconlyLight.activity,
                           onChanged: (value) => widget.profileController.phone = value,
                           validator: (_) => widget.profileController.phoneInstance.hasError(),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            PhoneInputFormatter(),
+                            LengthLimitingTextInputFormatter(16),
+                          ],
                         ),
                         SizedBox(height: size.height * 0.06),
                         CustomElevatedButton(
                           textButton: Strings.confirmButtonLabel,
-                          onPressed: () {},
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              signUpController.handleSignUpWithEmail();
+                            }
+                          },
                         ),
                         SizedBox(height: size.height * 0.04),
                       ],

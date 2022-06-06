@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'domain/useCases/signup/signup_usecase.dart';
 import 'domain/usecases/country_api/country_usecase_imp.dart';
+import 'domain/usecases/signup/signup_usecase.dart';
 import 'external/datasources/country_datasource_imp.dart';
 import 'external/datasources/firebase_signup_datasource_imp.dart';
 import 'infra/repositories/country_repository_imp.dart';
@@ -18,7 +18,7 @@ class SignUpModule extends Module {
   List<Bind<Object>> get binds => [
         Bind.factory((i) => FirebaseSignUpDatasourceImp(i())),
         Bind.factory((i) => SignUpRepositoryImp(i())),
-        Bind.factory((i) => SignUpUsecase(i())),
+        Bind.factory((i) => SignUpUsecaseImp(i())),
         Bind.singleton((i) => SignUpStore(i(), i())),
         Bind.singleton((i) => SignUpController(i())),
 

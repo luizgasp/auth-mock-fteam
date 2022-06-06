@@ -5,10 +5,10 @@ import '../../../../../../../core/utils/either.dart';
 import '../../repositories/i_signup_repository.dart';
 import 'i_signup_usecase.dart';
 
-class SignUpUsecase implements ISignUpUsecase {
+class SignUpUsecaseImp implements ISignUpUsecase {
   final ISignUpRepository _signUpRepository;
 
-  SignUpUsecase(ISignUpRepository signUpRepository) : _signUpRepository = signUpRepository;
+  SignUpUsecaseImp(ISignUpRepository signUpRepository) : _signUpRepository = signUpRepository;
 
   @override
   Future<Either<IAppException, Unit>> signUpWithEmail(SignUpWithEmailDTO params) async {

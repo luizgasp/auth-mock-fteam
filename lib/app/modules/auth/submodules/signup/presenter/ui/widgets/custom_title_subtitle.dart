@@ -19,7 +19,6 @@ class CustomTitleSubtitile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: size.height * 0.04),
           Text(
             title,
             style: Theme.of(context).textTheme.headline1,
@@ -29,8 +28,7 @@ class CustomTitleSubtitile extends StatelessWidget {
             children: [
               Text(
                 subtitle,
-                style:
-                    TextStyle(color: Theme.of(context).dialogBackgroundColor),
+                style: TextStyle(color: Theme.of(context).dialogBackgroundColor),
               ),
             ],
           ),

@@ -43,7 +43,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
               value: value,
               child: Row(
                 children: [
-                  // TODO - Arrumar tamanho da bandeira do país
+                  // TODO - Fix country's flag, wrong image size
                   SizedBox(
                     width: size.width * 0.12,
                     child: SvgPicture.network(value.countryImage),
